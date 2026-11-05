@@ -1,0 +1,13 @@
+<h2>Album List</h2>
+
+@if (albums.length > 0) {
+  <p>Available albums:</p>
+}
+
+<ul>
+  @for (album of albums; track album.id) {
+    <li class="album-item">{{ album.name }}</li>
+  } @empty {
+    <li>No albums available.</li>
+  }
+</ul>
