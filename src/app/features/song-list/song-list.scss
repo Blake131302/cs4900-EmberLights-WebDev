@@ -8,12 +8,27 @@ ul.song-list {
 
 .song-list li {
     border-bottom: $song-list-item-border;
+    display: grid;
 }
 
 // Format as a grid
 .song-header, .song-row {
-    display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     padding: 0.5rem;
     align-items: center;
+}
+
+.song-header {
+    font-weight: bold;
+    border-bottom: solid 1px #000000;
+}
+
+.song-list-summary {
+    grid-column: span 5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: solid 1px #000000;
+    padding: 0.5rem;
+    font-weight: bold;
 }

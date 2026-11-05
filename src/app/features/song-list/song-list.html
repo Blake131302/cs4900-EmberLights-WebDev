@@ -23,4 +23,11 @@
     } @empty {
         <li class="song-empty">No songs available.</li>
     }
+
+    <!--Only display if there is data available-->
+    @if (songs.length > 0) {
+        <li class="song-list-summary">
+            Total: {{ songs.length }}
+        </li>
+    }
 </ul>
