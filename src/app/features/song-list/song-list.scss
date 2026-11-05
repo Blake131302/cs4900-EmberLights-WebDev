@@ -1,0 +1,19 @@
+$song-list-border: 1px solid #000000;
+$song-list-item-border: 1px dashed #2222;
+
+ul.song-list {
+    border: $song-list-border;
+    align-self: center;
+}
+
+.song-list li {
+    border-bottom: $song-list-item-border;
+}
+
+// Format as a grid
+.song-header, .song-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    padding: 0.5rem;
+    align-items: center;
+}

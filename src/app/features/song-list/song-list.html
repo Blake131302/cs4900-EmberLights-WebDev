@@ -1,10 +1,26 @@
-<p>song-list works!</p>
+<link rel="stylesheet" href="./song-list.scss">
 
-<ul>
-    <li>Name - Artist - Album - Genre - Duration</li>
+<!--Song List-->
+<ul class="song-list">
+    <!--Header row-->
+    <li class="song-header">
+        <span>Name</span>
+        <span>Artist</span> 
+        <span>Album</span>
+        <span>Genre</span>
+        <span>Duration</span>
+    </li>
+
+    <!--List Contents-->
     @for (song of songs; track song.id) {
-        <li>{{ song.name }} - {{ song.artist }} - {{ song.album }} - {{ song.genre }} - {{ song.duration }}</li>
+        <li class="song-row">
+            <span>{{ song.name }}</span>
+            <span>{{ song.artist }}</span>
+            <span>{{ song.album }}</span>
+            <span>{{ song.genre }}</span>
+            <span>{{ song.duration }}</span>
+        </li>
     } @empty {
-        <li>No songs available.</li>
+        <li class="song-empty">No songs available.</li>
     }
 </ul>
