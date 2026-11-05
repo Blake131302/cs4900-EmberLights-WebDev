@@ -14,6 +14,12 @@ export class SongList {
     { id: 3, name: "Enter Sandman", genre: "Metal", duration: 331, album: "Metallica", artist: "Metallica"},
     { id: 4, name: "Bohemian Rhapsody", genre: "Rock", duration: 354, album: "A Night at the Opera", artist: "Queen"}
   ];
+
+  formatDuration(seconds: number): string {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+  }
 }
 
 //Mock display data type for a song

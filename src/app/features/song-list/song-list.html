@@ -18,7 +18,7 @@
             <span>{{ song.artist }}</span>
             <span>{{ song.album }}</span>
             <span>{{ song.genre }}</span>
-            <span>{{ song.duration }}</span>
+            <span>{{ formatDuration(song.duration) }}</span>
         </li>
     } @empty {
         <li class="song-empty">No songs available.</li>
