@@ -1,1 +1,10 @@
 <p>song-list works!</p>
+
+<ul>
+    <li>Name - Artist - Album - Genre - Duration</li>
+    @for (song of songs; track song.id) {
+        <li>{{ song.name }} - {{ song.artist }} - {{ song.album }} - {{ song.genre }} - {{ song.duration }}</li>
+    } @empty {
+        <li>No songs available.</li>
+    }
+</ul>
