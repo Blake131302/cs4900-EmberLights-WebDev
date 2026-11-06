@@ -1,0 +1,12 @@
+services:
+  offthecharts_frontend:
+    container_name: offthecharts_frontend
+    build:
+      context: .
+      dockerfile: dockerfile
+    ports:
+      - 4200:4200
+    volumes:
+      - .:/usr/src/app:delegated
+      - /usr/src/app/node_modules
+    command: ["npx", "ng", "serve", "--host", "0.0.0.0", "--poll=2000"]
