@@ -3,6 +3,13 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "java",
+      "name": "OffTheChartsApplication",
+      "request": "launch",
+      "mainClass": "com.emberlights.offthecharts.OffTheChartsApplication",
+      "projectName": "backend"
+    },
+    {
       "name": "ng serve",
       "type": "chrome",
       "request": "launch",
