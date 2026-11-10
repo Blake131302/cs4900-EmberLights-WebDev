@@ -1,3 +1,14 @@
+
+<div class="albums">
 @for (album of rec_albums; track $index) {
-    <p>{{ album.artistName }} | {{ album.albumName }}</p>
+    <div class="artistName">
+        <p>{{ album.artistName }}</p>
+    </div>
+    <div class="albumName">
+        <p>{{ album.albumName }}</p>
+    </div>
+    <!-- <div class="album">
+        <p>{{ album.albumName }} | {{ album.artistName }}</p>
+    </div> -->
 }
+</div>
