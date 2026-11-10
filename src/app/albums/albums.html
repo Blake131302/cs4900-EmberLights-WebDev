@@ -1,14 +1,18 @@
+  <div class="albumMessage">
+    @if (rec_albums.length > 0) {
+      <p>Displaying {{ rec_albums.length }} recently added albums.</p>
+    } @else {
+      <p>No recent albums found.</p>
+    }
+  </div>
 
-<div class="albums">
-@for (album of rec_albums; track $index) {
-    <div class="artistName">
+  <div class="albums">
+    @for (album of rec_albums; track $index) {
+      <div class="artistName">
         <p>{{ album.artistName }}</p>
-    </div>
-    <div class="albumName">
+      </div>
+      <div class="albumName">
         <p>{{ album.albumName }}</p>
-    </div>
-    <!-- <div class="album">
-        <p>{{ album.albumName }} | {{ album.artistName }}</p>
-    </div> -->
-}
-</div>
+      </div>
+    }
+  </div>
