@@ -1,0 +1,11 @@
+@for (playlist of playlists; track playlist.id) {
+    <li class="playlist-item">{{ playlist.name}}</li>
+}   @empty {
+        <li class="playlist-empty">No playlists.</li>
+}
+
+@if (playlists.length > 0) {
+    <li class="playlist-summary">
+        Total playlists: {{playlists.length}}
+    </li>
+}
