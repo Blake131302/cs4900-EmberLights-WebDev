@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Statistics } from '../../../../shared/statistics';
+import { Statistics } from '../../../../shared/interfaces/statistics';
 
 @Component({
   imports: [],
