@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Statistics } from '../../../../shared/interfaces/statistics';
+import { RouterLink } from '@angular/router';
 
 @Component({
-  imports: [],
+  imports: [RouterLink],
   selector: 'app-home-page',
   styleUrl: './home-page.scss',
   templateUrl: './home-page.html',
