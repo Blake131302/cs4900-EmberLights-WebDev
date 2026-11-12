@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
-import { HomePage } from './features/home-page/home-page';
+import { HomePage } from './features/dashboard/components/home-page/home-page';
 import { MoreStats } from './features/more-stats/more-stats';
 
 export const routes: Routes = [
-    { path: '', component: HomePage, title: 'Home Page' },
-    { path: 'more-stats', component: MoreStats, title: 'More Statistic' }
+    { path: '', component: HomePage },
+    { path: 'more-stats', component: MoreStats }
 ];
