@@ -15,13 +15,12 @@ $vertical-height: calc(100vh - 125px); //adjust based on header
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100px; /* Adjust the height as needed */
-  font-size: 2rem; /* Adjust the font size as needed */
-  font-family: Arial, sans-serif; /* Adjust the font family as needed */
+  height: 100px; 
+  font-size: 2rem; 
+  font-family: Arial, sans-serif;
 
-  //Float navbar to left hand side of screen, take up all vertical space except
   float: left;
-  height: $vertical-height; /* Take up all vertical space */
+  height: $vertical-height;
 
 
   //Stack contents vertically
@@ -32,7 +31,7 @@ $vertical-height: calc(100vh - 125px); //adjust based on header
   background-color: $button-color;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; //Why is this not working?
+  justify-content: space-between;
   align-items: center;
   margin: 5rem 0;
   padding: 1rem 1rem;

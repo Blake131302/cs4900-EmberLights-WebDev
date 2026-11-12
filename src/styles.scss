@@ -5,12 +5,12 @@ html {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif; /* Adjust the font family as needed */
-  color: white; /* Adjust the text color as needed */
-  min-height: 100vh; /* Ensure the body takes the full viewport height */
+  font-family: Arial, sans-serif;
+  color: white;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  flex: 1; /* Allow the body to take up the remaining space */
+  flex: 1; 
 }
 
 
