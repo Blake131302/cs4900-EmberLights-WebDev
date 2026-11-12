@@ -1,11 +1,6 @@
 import { Component } from '@angular/core';
+import { Statistics } from '../../shared/statistics';
 
-interface Stats {
-  totalPlaylists: number;
-  totalArtists: number;
-  totalGenres: number;
-  totalSongs: number;
-}
 @Component({
   imports: [],
   selector: 'app-home-page',
@@ -14,7 +9,7 @@ interface Stats {
 })
 export class HomePage {
 
-  monthlyStats: Stats = 
+  monthlyStats: Statistics = 
     {totalPlaylists: 10, totalArtists: 40, totalGenres: 8, totalSongs: 300}
 
 }
