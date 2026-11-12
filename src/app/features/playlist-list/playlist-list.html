@@ -1,11 +1,29 @@
-@for (playlist of playlists; track playlist.id) {
-    <li class="playlist-item">{{ playlist.name}}</li>
-}   @empty {
-        <li class="playlist-empty">No playlists.</li>
-}
 
-@if (playlists.length > 0) {
+
+<ul class="playlist-list">
+    <!--Header row-->
+    <li class="playlist-header">
+        <span>Name</span>
+        <span>Genre</span>
+        <span>Number of songs</span>
+        <span>Duration</span>
+    </li>
+
+    <!--List Contents-->
+    @for (playlist of playlists; track playlist.id) {
+        <li class="playlist-row">
+            <span>{{ playlist.name }}</span>
+            <span>{{ playlist.genre }}</span>
+            <span>{{ playlist.nos }}</span>
+            <span>{{ formatDuration(playlist.duration) }}</span>
+        </li>
+    } @empty {
+        <li class="playlist-empty">No playlists.</li>
+    }
+
+    @if (playlists.length > 0) {
     <li class="playlist-summary">
         Total playlists: {{playlists.length}}
     </li>
-}
+    }
+</ul>
