@@ -4,9 +4,6 @@ $banner-height: 125px;
 $banner-font-size: 2rem;
 $banner-font: Arial, sans-serif;
 
-//Make the banner a flexbox in a way that it anchors the top of the page
-// but lets the nav-bar take up the left side
-
 
 .site-banner {
   background-color: $banner-color;
@@ -21,4 +18,6 @@ $banner-font: Arial, sans-serif;
   
   padding: 0;
   border-bottom: 4px solid darken($banner-color, 10%);
+
+  
 }
