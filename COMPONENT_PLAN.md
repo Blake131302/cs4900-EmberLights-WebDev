@@ -1,6 +1,6 @@
 # Component Plan
 Pages
-- Create Page
+- Create Playlist Page (Sam)
 - View/Edit Playlist Page
 - Home Page (Aidan)
     - Monthly Stats (Aidan)
@@ -11,5 +11,5 @@ Pages
 Shared Materials
 - Confirmation Box 
     - Confirm Song Replace
-    - Confirm Cancel
+    - Confirm Cancel (Sam)
 - Statistics Interface (Aidan) 
