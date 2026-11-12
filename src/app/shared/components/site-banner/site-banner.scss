@@ -2,7 +2,7 @@ $banner-color: #698373;
 $text-color: black;
 $banner-height: 125px;
 $banner-font-size: 2rem;
-$banner-font: Arial, sans-serif;
+$banner-font: Oleo Script;
 
 
 .site-banner {
@@ -14,6 +14,7 @@ $banner-font: Arial, sans-serif;
   color: $text-color; /* Adjust the text color as needed */
   font-size: $banner-font-size;
   font-family: $banner-font;
+  font-weight: bold;
   margin: 0;
   
   padding: 0;
