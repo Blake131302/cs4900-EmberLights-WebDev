@@ -1,17 +1,17 @@
 # Component Plan
 ## Pages
-- Create Playlist Page (Sam)
-- View/Edit Playlist Page
-- Home Page (Aidan)
-    - Monthly Stats (Aidan)
-- More Stats Page (Aidan)
-- Library
-    - Search Components
+- Create Playlist Page - (Sam) - features/create-playlist/components/create-page
+- View/Edit Playlist Page - - features/view-playlist/components/view-page
+- Home Page - (Aidan) - features/dashboard/components/home-page
+    - Monthly Stats - (Aidan) - features/dashboard/components/monthly-stats
+- More Stats Page - (Aidan) - features/more-stats/components/more-stats-page
+- Library - - features/library/components/library-page
+    - Search Components features/library/components/search
 
 ## Shared Materials
-- Confirmation Box 
-    - Confirm Song Replace
-    - Confirm Cancel (Sam)
-- Statistics Interface (Aidan) 
-- Nav Bar
-- Site Banner
+- Confirmation Boxes
+    - Confirm Song Replace - - shared/components/confirm-replace
+    - Confirm Cancel - (Sam) - shared/components/confirm-cancel
+- Statistics Interface - (Aidan) - shared/components/stats-interface 
+- Nav Bar - - shared/components/nav-bar
+- Site Banner - - shared/components/site-banner
