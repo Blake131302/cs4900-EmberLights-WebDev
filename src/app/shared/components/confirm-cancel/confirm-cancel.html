@@ -1,10 +1,12 @@
-<h2 mat-dialog-title>Confirm Cancel</h2>
+<div class="cancel-dialogue">
+<h2 mat-dialog-title class="title">Confirm Cancel</h2>
 
 <mat-dialog-content>
-    Are you sure you want to cancel {{ data.name }}?
+    <p class="prompt">Are you sure you want to cancel {{ data.name }}?</p>
 </mat-dialog-content>
 
 <mat-dialog-actions>
     <button class="dialogue-button" mat-button (click)="dialogRef.close(false)">Cancel</button>
     <button class="dialogue-button" mat-button (click)="dialogRef.close(true)">Confirm</button>
 </mat-dialog-actions>
+</div>
