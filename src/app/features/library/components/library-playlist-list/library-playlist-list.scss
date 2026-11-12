@@ -13,11 +13,11 @@ ul.playlist-list {
 
 .playlist-list li {
     border-bottom: $playlist-list-item-border;
-    display: grid;
 }
 
 // Format as a grid
 .playlist-header, .playlist-row {
+    display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     column-gap: 2px; 
     padding: 10px;
