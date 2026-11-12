@@ -1,0 +1,24 @@
+//Dock navbar to the left, site header across the top (yielding left to nav) and maincontent the rest
+//This has kicked my content down below everything now. This is not the intent.
+// How do I fix it so the main content doesn't get kicked below everything?
+// The issue is that the main content is being placed below the site banner and nav bar due to the grid layout.
+// To fix this, ensure that the main content is placed in the correct grid area and that the site banner and nav bar are not spanning into the main content area.
+.content-container {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+    min-height: 100vh;
+}
+
+.site-banner {
+    grid-column: 2;
+}
+
+.nav-bar {
+    grid-row: 1 / span 2;
+}
+
+.main-content {
+    grid-column: 2;
+    grid-row: 2;
+}

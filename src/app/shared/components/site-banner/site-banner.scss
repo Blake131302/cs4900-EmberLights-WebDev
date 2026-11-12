@@ -1,0 +1,24 @@
+$banner-color: #698373;
+$text-color: black;
+$banner-height: 125px;
+$banner-font-size: 2rem;
+$banner-font: Arial, sans-serif;
+
+//Make the banner a flexbox in a way that it anchors the top of the page
+// but lets the nav-bar take up the left side
+
+
+.site-banner {
+  background-color: $banner-color;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: $banner-height; /* Adjust the height as needed */
+  color: $text-color; /* Adjust the text color as needed */
+  font-size: $banner-font-size;
+  font-family: $banner-font;
+  margin: 0;
+  
+  padding: 0;
+  border-bottom: 4px solid darken($banner-color, 10%);
+}
