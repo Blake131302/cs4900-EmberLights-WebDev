@@ -1,0 +1,34 @@
+
+<div class="create-page">
+    <h1 class="page-header">Create Page</h1>
+    <form>
+        <div class="input-item">
+            <label for="playlist-name">Playlist Name:</label>
+            <input type="text" id="playlist-name" name="playlist-name" required>
+        </div>
+
+        <div class="input-item">
+            <label for="genre">Genre:</label>
+            <select id="genre" name="genre" required>
+                <option value="rock">Rock</option>
+                <option value="pop">Pop</option>
+                <option value="folk">Folk</option>
+                <option value="metal">Metal</option>
+            </select>
+        </div>
+
+        <div class="input-item">
+            <label for="num-songs">Number of Songs:</label>
+            <input type="number" id="num-songs" name="num-songs" required>
+        </div>
+
+        <div class="input-item">
+            <!-- Example, this dialogue will instead be tied to leaving the page with data in the form -->
+            <button class="cancel-button" (click)="openDialog()">Cancel</button>
+            <button type="submit">Create</button>
+        </div>
+    </form>
+</div>
+    
+    
+    

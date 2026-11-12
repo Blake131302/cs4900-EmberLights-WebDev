@@ -1,0 +1,41 @@
+.create-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-header {
+    align-self: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    //two columns, one for labels and one for inputs
+    .input-item {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        width: 100%;
+        margin: 10px;
+
+        label {
+            justify-self: end;
+            padding-right: 10px;
+        }
+
+        input, select {
+            justify-self: start;
+        }
+        
+        button {
+            margin: 10px;
+        }
+
+    }
+}
+    

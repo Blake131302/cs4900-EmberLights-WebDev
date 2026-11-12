@@ -1,0 +1,24 @@
+$banner-color: #698373;
+$text-color: black;
+$banner-height: 125px;
+$banner-font-size: 2rem;
+$banner-font: Oleo Script;
+
+
+.site-banner {
+  background-color: $banner-color;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: $banner-height; 
+  color: $text-color; 
+  font-size: $banner-font-size;
+  font-family: $banner-font;
+  font-weight: bold;
+  margin: 0;
+  
+  padding: 0;
+  border-bottom: 4px solid darken($banner-color, 10%);
+
+  
+}

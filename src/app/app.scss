@@ -1,0 +1,19 @@
+.content-container {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+    min-height: 100vh;
+}
+
+.site-banner {
+    grid-column: 2;
+}
+
+.nav-bar {
+    grid-row: 1 / span 2;
+}
+
+.main-content {
+    grid-column: 2;
+    grid-row: 2;
+}
