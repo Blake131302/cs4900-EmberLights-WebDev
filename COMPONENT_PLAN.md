@@ -13,5 +13,5 @@
     - Confirm Song Replace - - shared/components/confirm-replace
     - Confirm Cancel - (Sam) - shared/components/confirm-cancel
 - Statistics Interface - (Aidan) - shared/components/stats-interface 
-- Nav Bar - - shared/components/nav-bar
-- Site Banner - - shared/components/site-banner
+- Nav Bar - (Sam) - shared/components/nav-bar
+- Site Banner - (Sam) - shared/components/site-banner
