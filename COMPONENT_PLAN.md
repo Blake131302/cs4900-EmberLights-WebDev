@@ -1,5 +1,5 @@
 # Component Plan
-Pages
+## Pages
 - Create Playlist Page (Sam)
 - View/Edit Playlist Page
 - Home Page (Aidan)
@@ -8,8 +8,10 @@ Pages
 - Library
     - Search Components
 
-Shared Materials
+## Shared Materials
 - Confirmation Box 
     - Confirm Song Replace
     - Confirm Cancel (Sam)
 - Statistics Interface (Aidan) 
+- Nav Bar
+- Site Banner
