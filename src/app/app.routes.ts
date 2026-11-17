@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { CreatePage } from './features/create-playlist/components/create-page/create-page';
-
+import { LibraryPage } from './features/library/components/library-page/library-page';
 
 export const routes: Routes = [
-    { path: 'create-playlist', component: CreatePage}
+    { path: '', redirectTo: 'orders', pathMatch: 'full' },
+    { path: 'library', component: LibraryPage },
 ];

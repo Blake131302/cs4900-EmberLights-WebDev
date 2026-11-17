@@ -1,3 +1,4 @@
+
 <ul class="library-playlist-list">
     <!--Header row-->
     <li class="playlist-header">
@@ -10,10 +11,7 @@
     <!--List Contents-->
     @for (playlist of playlists; track playlist.id) {
         <li class="playlist-row">
-            <span>{{ playlist.name }}</span>
-            <span>{{ playlist.genre }}</span>
-            <span>{{ playlist.nos }}</span>
-            <span>{{ formatDuration(playlist.duration) }}</span>
+            <app-library-playlists-details [playlist]="playlist" />
         </li>
     } @empty {
         <li class="playlist-empty">No playlists.</li>
