@@ -1,0 +1,30 @@
+$playlist-list-border: 1px solid #ffffff;
+$playlist-list-item-border: 1px solid #ffffff;
+
+.playlist-item{
+    border: $playlist-list-border;
+    list-style-type: none;
+}
+
+ul.playlist-list {
+    border: $playlist-list-border;
+    align-self: center;
+}
+
+.playlist-list li {
+    border-bottom: $playlist-list-item-border;
+}
+
+// Format as a grid
+.playlist-header, .playlist-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    column-gap: 2px; 
+    padding: 10px;
+    align-items: center;
+    color: #ffffff;
+}
+ 
+.playlist-summary {
+    padding: 10px;
+}
