@@ -14,12 +14,14 @@ import { toSignal } from '@angular/core/rxjs-interop';
   standalone: true,
 })
 export class SongList {
-  songService = inject(SongService);
-
-  // Type is Signal<SongDto[]> (always an array, never undefined)
-  songs = toSignal(this.songService.getSongs(), { 
-    initialValue: []});
-
+  private songService = inject(SongService);
+  songs = signal<SongDto[]>([]);
+  
+  ngOnInit() {
+    this.songService.getSongs().subscribe(songs => {
+      this.songs.set(songs);
+    });
+  }
 
   newSong = signal<SongRequestDto>({
     songID: 0,
@@ -47,7 +49,7 @@ export class SongList {
   }
   
   getSongs() {
-    return toSignal(this.songService.getSongs());
+    return this.songs();
   }
 
   // Bind update events in the form to methods

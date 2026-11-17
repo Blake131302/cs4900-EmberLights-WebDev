@@ -12,7 +12,7 @@
     </li>
 
     <!--List Contents-->
-    @for (song of songs; track song.songID) {
+    @for (song of songs(); track song.songID) {
         <li class="song-row">
             <app-song-details [song]="song" />
         </li>
