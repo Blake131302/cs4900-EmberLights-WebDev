@@ -19,8 +19,8 @@ export class SongService {
         return this.http.get<SongDto>(`${this.baseURL}/song/${songID}`);
     }
 
-    createSong(song: SongRequestDto): Observable<SongRequestDto> {
-        return this.http.post<SongRequestDto>(`${this.baseURL}/song`, song);
+    createSong(song: SongRequestDto): Observable<SongDto> {
+        return this.http.post<SongDto>(`${this.baseURL}/song`, song);
     }
 
     updateSong(song: SongRequestDto): Observable<SongRequestDto> {

@@ -32,22 +32,30 @@ export class SongList {
   })
 
   addSong(): void {
-    // Remember to pas as a copy, not the signal itself.
-    this.songService.createSong({
+    const payload: SongRequestDto = {
       ...this.newSong(),
       songID: undefined
-    });
+    };
 
-    this.newSong.set({
-      songID: 0,
-      songName: '',
-      genreID: 0,
-      songDuration: '',
-      albumID: 0
-    });
+    //Apparently observables only trigger if you subscribe
+    this.songService.createSong(payload).subscribe({
+      next: (createdSong: SongDto) => {
+        this.songs.update(currentSongs => [...currentSongs, createdSong]);
 
+        this.newSong.set({
+          songID: 0,
+          songName: '',
+          genreID: 0,
+          songDuration: '',
+          albumID: 0
+        });
+      },
+      error: (err) => {
+        console.error('Failed to create song:', err);
+      }
+    });
   }
-  
+
   getSongs() {
     return this.songs();
   }
