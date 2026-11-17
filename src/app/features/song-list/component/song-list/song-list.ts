@@ -24,6 +24,7 @@ export class SongList {
   })
 
   addSong(): void {
+    // Remember to pas as a copy, not the signal itself.
     this.songService.addSong({
       ...this.newSong(), 
       id: this.songService.getSongs().length + 1});
@@ -42,6 +43,7 @@ export class SongList {
     return this.songService.getSongs();
   }
 
+  // Bind update events in the form to methods
   updateName(event: Event): void {
     const value = (event.target as HTMLInputElement).value;
     this.newSong.update(song => ({ ...song, name: value }));
