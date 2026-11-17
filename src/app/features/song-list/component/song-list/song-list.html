@@ -12,7 +12,7 @@
     </li>
 
     <!--List Contents-->
-    @for (song of songs; track song.id) {
+    @for (song of songs; track song.songID) {
         <li class="song-row">
             <app-song-details [song]="song" />
         </li>
@@ -21,9 +21,9 @@
     }
 
     <!--Only display if there is data available-->
-    @if (songService.getSongs().length > 0) {
+    @if (getSongs().length > 0) {
         <li class="song-list-summary">
-            Total: {{ songService.getSongs().length }}
+            Total: {{ getSongs().length }}
         </li>
     }
 </ul>
@@ -32,27 +32,22 @@
 <form>
     <div class="input-item">
         <label for="name">Name:</label>
-        <input type="text" placeholder="e.g. Bohemian Rhapsody" name="name" required [value]="newSong().name" (input)="updateName($event)">
-    </div>
-
-    <div class="input-item">
-        <label for="artist">Artist:</label>
-        <input type="text" placeholder="e.g. Queen" name="artist" required [value]="newSong().artist" (input)="updateArtist($event)">
+        <input type="text" placeholder="e.g. Bohemian Rhapsody" name="name" required [value]="newSong().songName" (input)="updateName($event)">
     </div>
     
     <div class="input-item">
-        <label for="album">Album:</label>
-        <input type="text" placeholder="e.g. A Night at the Opera" name="album" required [value]="newSong().album" (input)="updateAlbum($event)">
+        <label for="albumID">AlbumID:</label>
+        <input type="number" placeholder="e.g. 1" name="albumID" required [value]="newSong().albumID" (input)="updateAlbumID($event)">
     </div>
 
     <div class="input-item">
-        <label for="genre">Genre:</label>
-        <input type="text" placeholder="e.g. Rock" name="genre" required [value]="newSong().genre" (input)="updateGenre($event)">
+        <label for="genreID">GenreID:</label>
+        <input type="number" placeholder="e.g. 1" name="genreID" required [value]="newSong().genreID" (input)="updateGenreID($event)">
     </div>
 
     <div class="input-item">
         <label for="duration">Duration:</label>
-        <input type="text" placeholder="e.g. 00:03:45" name="duration" required [value]="newSong().duration" (input)="updateDuration($event)">
+        <input type="text" placeholder="e.g. 00:03:45" name="duration" required [value]="newSong().songDuration" (input)="updateDuration($event)">
     </div>
 
     <button (click)="addSong()" type="submit">Add Song</button>

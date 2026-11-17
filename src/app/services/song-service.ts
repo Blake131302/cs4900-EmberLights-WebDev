@@ -1,30 +1,29 @@
-import { Injectable, Service, signal } from '@angular/core';
-import { Song } from '../models/song';
+import { inject, Injectable, Service, signal } from '@angular/core';
+import { environment } from '../../environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/internal/Observable';
+import { SongDto, SongRequestDto } from '../models/songDto';
 
 @Injectable({
     providedIn: 'root',
 })
 export class SongService {
-    //Will later use a constructor with an API service
-    // Apparently using a readonly copy of the signal is a good practice to prevent external mutation
-    private _songs = signal<Song[]>(this.getMockSongs());
-    private readonly songs = this._songs.asReadonly();
+    private readonly http = inject(HttpClient);
+    private readonly baseURL = environment.apiURL;
 
-    addSong(song: Song): void {
-        // Use update not direct assignment to ensure reactivity
-        this._songs.update((songs) => [...songs, song]);
+    getSongs(): Observable<SongDto[]> {
+        return this.http.get<SongDto[]>(`${this.baseURL}/song`);
     }
 
-    getSongs(): Song[] {
-        return this.songs();
+    getSongById(songID: number): Observable<SongDto> {
+        return this.http.get<SongDto>(`${this.baseURL}/song/${songID}`);
     }
 
-    private getMockSongs(): Song[] {
-        return [
-            { id: 1, name: 'Song 1', genre: 'Rock', duration: '00:03:45', album: 'Album 1', artist: 'Artist 1' },
-            { id: 2, name: 'Song 2', genre: 'Pop', duration: '00:04:20', album: 'Album 2', artist: 'Artist 2' },
-            { id: 3, name: 'Song 3', genre: 'Folk', duration: '00:05:10', album: 'Album 3', artist: 'Artist 3' },
-            { id: 4, name: 'Song 4', genre: 'Metal', duration: '00:06:30', album: 'Album 4', artist: 'Artist 4' },
-        ];
+    createSong(song: SongRequestDto): Observable<SongRequestDto> {
+        return this.http.post<SongRequestDto>(`${this.baseURL}/song`, song);
+    }
+
+    updateSong(song: SongRequestDto): Observable<SongRequestDto> {
+        return this.http.put<SongRequestDto>(`${this.baseURL}/song/${song.songID}`, song);
     }
 }

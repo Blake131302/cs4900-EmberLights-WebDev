@@ -3,6 +3,8 @@ import { SongService } from '../../../../services/song-service';
 import { FormsModule } from '@angular/forms';
 import { Song } from '../../../../models/song';
 import { SongDetails } from '../song-details/song-details';
+import { SongDto, SongRequestDto } from '../../../../models/songDto';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   imports: [FormsModule, SongDetails],
@@ -14,54 +16,59 @@ import { SongDetails } from '../song-details/song-details';
 export class SongList {
   songService = inject(SongService);
 
-  newSong = signal<Song>({
-    id: 0,
-    name: '',
-    genre: '',
-    duration: '',
-    album: '',
-    artist: ''
+  // Type is Signal<SongDto[]> (always an array, never undefined)
+  songs = toSignal(this.songService.getSongs(), { 
+    initialValue: []});
+
+
+  newSong = signal<SongRequestDto>({
+    songID: 0,
+    songName: '',
+    genreID: 0,
+    songDuration: '',
+    albumID: 0
   })
 
   addSong(): void {
     // Remember to pas as a copy, not the signal itself.
-    this.songService.addSong({
-      ...this.newSong(), 
-      id: this.songService.getSongs().length + 1});
-    
-      this.newSong.set({
-        id: 0,
-        name: '',
-        genre: '',
-        duration: '',
-        album: '',
-        artist: ''
-      });
+    this.songService.createSong({
+      ...this.newSong(),
+      songID: undefined
+    });
+
+    this.newSong.set({
+      songID: 0,
+      songName: '',
+      genreID: 0,
+      songDuration: '',
+      albumID: 0
+    });
+
   }
   
-  get songs() {
-    return this.songService.getSongs();
+  getSongs() {
+    return toSignal(this.songService.getSongs());
   }
 
   // Bind update events in the form to methods
   updateName(event: Event): void {
     const value = (event.target as HTMLInputElement).value;
-    this.newSong.update(song => ({ ...song, name: value }));
+    this.newSong.update(song => ({ ...song, songName: value }));
   }
 
-  updateGenre(event: Event): void {
+  updateGenreID(event: Event): void {
     const value = (event.target as HTMLInputElement).value;
-    this.newSong.update(song => ({ ...song, genre: value }));
+    this.newSong.update(song => ({ ...song, genreID: Number(value) }));
   }
 
   updateDuration(event: Event): void {
     const value = (event.target as HTMLInputElement).value;
-    this.newSong.update(song => ({ ...song, duration: value }));
+    this.newSong.update(song => ({ ...song, songDuration: value }));
   }
 
-  updateAlbum(event: Event): void {
+  updateAlbumID(event: Event): void {
     const value = (event.target as HTMLInputElement).value;
-    this.newSong.update(song => ({ ...song, album: value }));
+    this.newSong.update(song => ({ ...song, albumID: Number(value) }));
   }
 
   updateArtist(event: Event): void {

@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { Song } from '../../../../models/song';
+import { SongDto } from '../../../../models/songDto';
 
 @Component({
   imports: [],
@@ -10,5 +10,5 @@ import { Song } from '../../../../models/song';
 })
 export class SongDetails {
   //Require a signal input for song
-  song = input.required<Song>();
+  song = input.required<SongDto>();
 }

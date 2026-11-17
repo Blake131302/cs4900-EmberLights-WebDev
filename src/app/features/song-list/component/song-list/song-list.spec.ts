@@ -31,15 +31,11 @@ describe('SongList', () => {
     expect(component.addSong).toBeDefined();
   });
 
-  it('should have a songs getter', () => {
-    expect(component.songs).toBeDefined();
-  });
-
   it('should have updateName, updateGenre, updateDuration, updateAlbum, and updateArtist methods', () => {
     expect(component.updateName).toBeDefined();
-    expect(component.updateGenre).toBeDefined();
+    expect(component.updateGenreID).toBeDefined();
     expect(component.updateDuration).toBeDefined();
-    expect(component.updateAlbum).toBeDefined();
+    expect(component.updateAlbumID).toBeDefined();
     expect(component.updateArtist).toBeDefined();
   });
 });
