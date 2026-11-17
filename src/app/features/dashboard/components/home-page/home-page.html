@@ -1,7 +1,17 @@
-<p>Total Playlists: {{ monthlyStats.totalPlaylists}}</p>
-<p>Total Artists: {{ monthlyStats.totalArtists}}</p>
-<p>Total Genres: {{ monthlyStats.totalGenres}}</p>
-<p>Total Songs: {{ monthlyStats.totalSongs}}</p>
+<h3>Monthly Statistics</h3>
+<p>Total Playlists: {{ monthlyStats.totalPlaylists }}</p>
+<p>Total Artists: {{ monthlyStats.totalArtists }}</p>
+<p>Total Genres: {{ monthlyStats.totalGenres }}</p>
+<p>Total Songs: {{ monthlyStats.totalSongs }}</p>
+
+<div class="album-form-container">
+    <!-- <form [formGroup]="albumForm" (ngSubmit)="addAlbum()" class="album-form"> -->
+        <h3>Add an album:</h3>
+        <input type="text" placeholder="Album Name" id="album" [(ngModel)]="albumName" />
+        <input type="text" placeholder="Artist Name" id="artistName" [(ngModel)]="artistName" />
+        <button (click)="submitAlbum()">Submit</button>
+    <!-- </form> -->
+</div>
 
 <div class="albumMessage">
     @if (recentAlbums().length > 0) {
