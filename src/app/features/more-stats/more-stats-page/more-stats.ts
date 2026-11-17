@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Statistics } from '../../../shared/interfaces/statistics';
 import { RouterLink } from '@angular/router';
-
+import { StatsService } from '../../../services/stats.service';
+import { toSignal } from '@angular/core/rxjs-interop';
 @Component({
   imports: [RouterLink],
   selector: 'app-more-stats',
@@ -9,7 +10,18 @@ import { RouterLink } from '@angular/router';
   templateUrl: './more-stats.html',
 })
 export class MoreStats {
+  private statsService = inject(StatsService);
 
-  totalStats: Statistics =
-    {totalPlaylists: 300, totalArtists: 900, totalGenres: 10, totalSongs: 2000}
+  moreStats = toSignal(this.statsService.getStats(), {
+    initialValue: {
+      totalPlaylists: 0,
+      totalArtists: 0,
+      totalGenres: 0,
+      totalSongs: 0,
+      totalUsers: 0,
+      topArtist: "",
+      topGenre: "",
+      topSong: ""
+    },
+  });
 }
