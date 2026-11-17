@@ -1,0 +1,18 @@
+$background-color: #1E1E1E;
+$text-color: white;
+
+.dialogue-button {
+    margin: 0 8px;
+}
+
+.cancel-dialogue {
+    background-color: $background-color;
+}
+
+.prompt {
+    color: $text-color;
+}
+
+.title {
+    color: $text-color;
+}
