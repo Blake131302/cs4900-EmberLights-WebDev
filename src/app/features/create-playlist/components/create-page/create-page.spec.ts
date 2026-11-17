@@ -18,4 +18,12 @@ describe('CreatePage', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have a dialog', () => {
+    expect(component['dialog']).toBeDefined();
+  });
+
+  it('should have an openDialog method', () => {
+    expect(component.openDialog).toBeDefined();
+  });
 });
