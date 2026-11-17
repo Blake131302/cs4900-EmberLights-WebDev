@@ -1,6 +1,17 @@
-<p>more-stats works!</p>
-<a routerLink="/">Home</a>
+<p>Total Playlists: {{ moreStats().totalPlaylists}}</p>
+<p>Total Artists: {{ moreStats().totalArtists}}</p>
+<p>Total Genres: {{ moreStats().totalGenres}}</p>
+<p>Total Songs: {{ moreStats().totalSongs}}</p>
+<p>Total Users: {{ moreStats().totalUsers }} </p>
+<p>Top Artist: {{ moreStats().topArtist }} </p>
+<p>Top Song: {{ moreStats().topSong }}</p>
+<p>Top Genre: {{ moreStats().topGenre }}</p>
+
+
+
+
 
 <footer>
+    <a routerLink="/">Home</a>
     <a routerLink="/help">Help Page</a>
 </footer>
