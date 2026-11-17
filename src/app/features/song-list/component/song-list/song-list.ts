@@ -1,10 +1,8 @@
 import { Component, inject, signal } from '@angular/core';
 import { SongService } from '../../../../services/song-service';
 import { FormsModule } from '@angular/forms';
-import { Song } from '../../../../models/song';
 import { SongDetails } from '../song-details/song-details';
 import { SongDto, SongRequestDto } from '../../../../models/songDto';
-import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   imports: [FormsModule, SongDetails],
@@ -15,13 +13,8 @@ import { toSignal } from '@angular/core/rxjs-interop';
 })
 export class SongList {
   private songService = inject(SongService);
-  songs = signal<SongDto[]>([]);
-  
-  ngOnInit() {
-    this.songService.getSongs().subscribe(songs => {
-      this.songs.set(songs);
-    });
-  }
+  private _songs = signal<SongDto[]>([])
+  readonly songs = this._songs.asReadonly();
 
   newSong = signal<SongRequestDto>({
     songID: 0,
@@ -30,6 +23,12 @@ export class SongList {
     songDuration: '',
     albumID: 0
   })
+
+   ngOnInit() {
+    this.songService.getSongs().subscribe(songs => {
+      this._songs.set(songs);
+    });
+  }
 
   addSong(): void {
     const payload: SongRequestDto = {
@@ -40,7 +39,7 @@ export class SongList {
     //Apparently observables only trigger if you subscribe
     this.songService.createSong(payload).subscribe({
       next: (createdSong: SongDto) => {
-        this.songs.update(currentSongs => [...currentSongs, createdSong]);
+        this._songs.update(currentSongs => [...currentSongs, createdSong]);
 
         this.newSong.set({
           songID: 0,
@@ -54,10 +53,6 @@ export class SongList {
         console.error('Failed to create song:', err);
       }
     });
-  }
-
-  getSongs() {
-    return this.songs();
   }
 
   // Bind update events in the form to methods

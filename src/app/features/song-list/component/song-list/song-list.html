@@ -21,9 +21,9 @@
     }
 
     <!--Only display if there is data available-->
-    @if (getSongs().length > 0) {
+    @if (songs().length > 0) {
         <li class="song-list-summary">
-            Total: {{ getSongs().length }}
+            Total: {{ songs().length }}
         </li>
     }
 </ul>
