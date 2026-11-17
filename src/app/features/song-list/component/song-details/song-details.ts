@@ -1,8 +1,9 @@
 import { Component, input } from '@angular/core';
 import { SongDto } from '../../../../models/songDto';
+import { DurationPipe } from '../../../../duration-pipe';
 
 @Component({
-  imports: [],
+  imports: [DurationPipe],
   selector: 'app-song-details',
   standalone: true,
   styleUrl: './song-details.scss',
