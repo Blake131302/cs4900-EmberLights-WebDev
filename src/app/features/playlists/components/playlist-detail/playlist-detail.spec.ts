@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PlaylistDetail } from './playlist-detail';
+import { PlaylistSong } from '../../../../services/playlist-song';
 
 describe('PlaylistDetail', () => {
   let component: PlaylistDetail;
@@ -8,6 +9,7 @@ describe('PlaylistDetail', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [PlaylistDetail],
+      providers: [PlaylistSong],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PlaylistDetail);

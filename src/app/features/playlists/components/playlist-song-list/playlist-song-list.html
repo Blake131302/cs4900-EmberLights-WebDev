@@ -1,4 +1,18 @@
 <h3>Playlist Songs</h3>
 
-<p>This component will display the songs in the selected playlist.</p>
-<p>Users will be able to select songs for replacement.</p>
+<div class="add-song">
+  <input
+    type="text"
+    placeholder="Enter song name"
+    [value]="newSongName()"
+    (input)="newSongName.set($any($event.target).value)"
+  />
+
+  <button (click)="addSong()">Add Song</button>
+</div>
+
+<div class="song-list">
+  @for (song of songs(); track song.id) {
+    <app-song-detail-card [song]="song"></app-song-detail-card>
+  }
+</div>
