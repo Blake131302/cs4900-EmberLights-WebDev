@@ -1,0 +1,65 @@
+$song-list-border: 1px solid #e9e9e9;
+$song-list-item-border: 1px dashed #cfcfcf22;
+
+ul.song-list {
+    border: $song-list-border;
+    align-self: center;
+    margin: 5rem 2rem 2rem 2rem;
+}
+
+.song-list li {
+    border-bottom: $song-list-item-border;
+    display: grid;
+}
+
+// Format as a grid
+.song-header, .song-row {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    padding: 0.5rem;
+    align-items: center;
+}
+
+.song-header {
+    font-weight: bold;
+    border-bottom: solid 1px #000000;
+}
+
+.song-list-summary {
+    grid-column: span 5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: solid 1px #000000;
+    padding: 0.5rem;
+    font-weight: bold;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    //two columns, one for labels and one for inputs
+    .input-item {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        width: 100%;
+        margin: 10px;
+
+        label {
+            justify-self: end;
+            padding-right: 10px;
+        }
+
+        input, select {
+            justify-self: start;
+        }
+        
+        button {
+            margin: 10px;
+        }
+
+    }
+}

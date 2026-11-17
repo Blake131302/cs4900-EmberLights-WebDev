@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ConfirmCancel } from '../../../../shared/components/confirm-cancel/confirm-cancel';
-import { GenreService } from '../../../../services/genre-service';
 
 @Component({
   imports: [MatDialogModule],
@@ -10,7 +9,6 @@ import { GenreService } from '../../../../services/genre-service';
   templateUrl: './create-page.html',
 })
 export class CreatePage {
-  genreService = inject(GenreService);  
   private dialog = inject(MatDialog);
 
   openDialog() {

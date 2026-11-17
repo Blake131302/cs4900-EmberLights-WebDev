@@ -10,9 +10,10 @@
         <div class="input-item">
             <label for="genre">Genre:</label>
             <select id="genre" name="genre" required>
-                @for (genre of genreService.getGenres(); track genre.id) {
-                    <option value="{{ genre.name }}">{{ genre.name }}</option>
-                }
+                <option value="Rock">Rock</option>
+                <option value="Pop">Pop</option>
+                <option value="Folk">Folk</option>
+                <option value="Metal">Metal</option>
             </select>
         </div>
 
