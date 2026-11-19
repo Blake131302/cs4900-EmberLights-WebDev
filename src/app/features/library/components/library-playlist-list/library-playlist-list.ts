@@ -14,15 +14,34 @@
 
     playlistService = inject(PlaylistService)
 
+    playlists = signal<Playlist[]>([]);
+
     newPlaylist = signal<Playlist>({
-      id: 0,
-      name: '',
-      genre: '',
-      creation: '',
-      nos: 0
+      playlistID: 0,
+      playlistName: '',
+      genres:{
+        genreID: 1,
+        genreName: ''
+      },
+      creationTime: '',
+      numberSongs: 0
     })
 
-    get playlists() {
-      return this.playlistService.getPlaylists();
+    onNameInput(event: Event): void {
+      const playlistName = (event.target as HTMLInputElement).value;
+      this.newPlaylist.update(p => ({ ...p, playlistName }));
+    }
+
+    addPlaylist(): void {
+      const current = this.newPlaylist();
+      this.playlistService.addPlaylist(current.playlistName, current.genres.genreID);
+      this.newPlaylist.set({ playlistID: 0, playlistName: '', genres:{genreID: 1,genreName: ''}, creationTime: '', numberSongs: 0 });
+    }
+
+    ngOnInit(): void {
+      this.playlistService.getPlaylists().subscribe({
+        next: (data) => this.playlists.set(data),
+        error: (err) => console.error('Failed to fetch data:', err)
+      })
     }
   }

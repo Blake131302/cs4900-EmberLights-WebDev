@@ -9,7 +9,7 @@
     </li>
 
     <!--List Contents-->
-    @for (playlist of playlists; track playlist.id) {
+    @for (playlist of playlists(); track playlist.playlistID) {
         <li class="playlist-row">
             <app-library-playlists-details [playlist]="playlist" />
         </li>
@@ -17,9 +17,19 @@
         <li class="playlist-empty">No playlists.</li>
     }
 
-    @if (playlists.length > 0) {
+    @if (playlists().length > 0) {
     <li class="playlist-summary">
-        Total playlists: {{playlists.length}}
+        Total playlists: {{playlists().length}}
     </li>
     }
 </ul>
+
+<div class="add-playlist">
+  <input
+    type="text"
+    placeholder="Playlist name"
+    [value]="newPlaylist().playlistName"
+    (input)="onNameInput($event)"
+  />
+  <button type="button" (click)="addPlaylist()">Add Playlist</button>
+</div>
