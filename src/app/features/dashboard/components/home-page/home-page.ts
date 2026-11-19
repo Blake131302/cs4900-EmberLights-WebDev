@@ -5,9 +5,10 @@ import { AlbumsService } from '../../../../services/albums.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Album } from '../../../../shared/interfaces/album';
 import { FormControl, FormGroup, FormsModule } from '@angular/forms';
+import { AlbumCard } from './album-card/album-card.component';
 
 @Component({
-  imports: [RouterLink, FormsModule],
+  imports: [RouterLink, FormsModule, AlbumCard],
   selector: 'app-home-page',
   standalone: true,
   styleUrl: './home-page.scss',
