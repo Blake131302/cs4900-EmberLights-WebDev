@@ -23,9 +23,7 @@ export class HomePage {
   monthlyStats: Statistics = 
     {totalPlaylists: 10, totalArtists: 40, totalGenres: 8, totalSongs: 300}
 
-  recentAlbums = toSignal(this.albumService.getAlbums(), {
-  initialValue: []
-  });
+  recentAlbums = this.albumService.albums;
 
   //   albumForm = new FormGroup({
   //   albumName: new FormControl(''),
@@ -43,5 +41,7 @@ export class HomePage {
 
     console.log(inAlbum + " " + inArtist);
     this.albumService.addAlbum(inAlbum, inArtist);
+    this.albumName = '';
+    this.artistName = '';
   }
 }
