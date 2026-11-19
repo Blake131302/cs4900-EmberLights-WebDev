@@ -14,7 +14,7 @@
 
     playlistService = inject(PlaylistService)
 
-    playlists = signal<Playlist[]>([]);
+    playlists = this.playlistService.playlists;
 
     newPlaylist = signal<Playlist>({
       playlistID: 0,
