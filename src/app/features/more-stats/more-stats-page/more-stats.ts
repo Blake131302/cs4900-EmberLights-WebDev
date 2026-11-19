@@ -1,10 +1,8 @@
 import { Component, inject } from '@angular/core';
-import { Statistics } from '../../../shared/interfaces/statistics';
-import { RouterLink } from '@angular/router';
 import { StatsService } from '../../../services/stats.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 @Component({
-  imports: [RouterLink],
+  imports: [],
   selector: 'app-more-stats',
   styleUrl: './more-stats.scss',
   templateUrl: './more-stats.html',
