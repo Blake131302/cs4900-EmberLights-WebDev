@@ -2,9 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Statistics } from '../../../../shared/interfaces/statistics';
 import { RouterLink } from '@angular/router';
 import { AlbumsService } from '../../../../services/albums.service';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { Album } from '../../../../shared/interfaces/album';
-import { FormControl, FormGroup, FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { AlbumCard } from './album-card/album-card.component';
 
 @Component({
@@ -25,11 +23,6 @@ export class HomePage {
     {totalPlaylists: 10, totalArtists: 40, totalGenres: 8, totalSongs: 300}
 
   recentAlbums = this.albumService.albums;
-
-  //   albumForm = new FormGroup({
-  //   albumName: new FormControl(''),
-  //   artistName: new FormControl('')
-  // });
 
   submitAlbum() {
     const inAlbum = this.albumName;
