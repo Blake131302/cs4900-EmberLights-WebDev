@@ -1,16 +1,18 @@
 :host {
-    display: contents;
+  display: contents;
 }
 
-.artistName, .albumName {
-        padding-left: 10px;
-        padding-right: 10px;
-        background-color: #7ee3ba;
-        text-align: center;
-        border: 1px solid black;
-        font-size: 24px;
+.artistName,
+.albumName {
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #7ee3ba;
+  text-align: center;
+  border: 1px solid black;
+  font-size: 24px;
+  color: black;
 
-        &:hover {
-            background-color: #3fffb258;
-        }
-    }
+  &:hover {
+    background-color: #3fffb258;
+  }
+}
