@@ -1,11 +1,10 @@
 import { Component, inject, signal } from '@angular/core';
 import { SongService } from '../../../../services/song-service';
-import { FormsModule } from '@angular/forms';
 import { Song } from '../../../../models/song';
 import { SongDetails } from '../song-details/song-details';
 
 @Component({
-  imports: [FormsModule, SongDetails],
+  imports: [SongDetails],
   selector: 'song-list',
   styleUrl: './song-list.scss',
   templateUrl: './song-list.html',
@@ -24,10 +23,13 @@ export class SongList {
   })
 
   addSong(): void {
+    //Return if song has no name
+    if (!this.newSong().name.trim()) return; 
+    
     // Remember to pas as a copy, not the signal itself.
     this.songService.addSong({
       ...this.newSong(), 
-      id: this.songService.getSongs().length + 1});
+      id: this.songService.songs().length + 1});
     
       this.newSong.set({
         id: 0,
@@ -40,7 +42,7 @@ export class SongList {
   }
   
   get songs() {
-    return this.songService.getSongs();
+    return this.songService.songs();
   }
 
   // Bind update events in the form to methods

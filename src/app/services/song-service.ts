@@ -1,4 +1,4 @@
-import { Injectable, Service, signal } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { Song } from '../models/song';
 
 @Injectable({
@@ -8,15 +8,11 @@ export class SongService {
     //Will later use a constructor with an API service
     // Apparently using a readonly copy of the signal is a good practice to prevent external mutation
     private _songs = signal<Song[]>(this.getMockSongs());
-    private readonly songs = this._songs.asReadonly();
+    readonly songs = this._songs.asReadonly();
 
     addSong(song: Song): void {
         // Use update not direct assignment to ensure reactivity
         this._songs.update((songs) => [...songs, song]);
-    }
-
-    getSongs(): Song[] {
-        return this.songs();
     }
 
     private getMockSongs(): Song[] {
