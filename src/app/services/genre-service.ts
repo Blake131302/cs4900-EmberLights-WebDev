@@ -14,6 +14,6 @@ export class GenreService {
     genre = signal<Genre[]>([]);
 
     getGenreById(id: number): Observable<Genre>{
-            return this.http.get<Genre>(`${this.baseUrl}/genre/${id}`);
+        return this.http.get<Genre>(`${this.baseUrl}/genre/${id}`);
     }
 }
