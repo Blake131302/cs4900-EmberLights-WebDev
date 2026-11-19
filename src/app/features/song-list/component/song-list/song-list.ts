@@ -1,11 +1,10 @@
 import { Component, inject, signal } from '@angular/core';
 import { SongService } from '../../../../services/song-service';
-import { FormsModule } from '@angular/forms';
 import { SongDetails } from '../song-details/song-details';
 import { SongDto, SongRequestDto } from '../../../../models/songDto';
 
 @Component({
-  imports: [FormsModule, SongDetails],
+  imports: [SongDetails],
   selector: 'song-list',
   styleUrl: './song-list.scss',
   templateUrl: './song-list.html',
@@ -31,6 +30,9 @@ export class SongList {
   }
 
   addSong(): void {
+    //Don't do anything if the song has no name
+    if (!this.newSong.name.trim()) return;
+
     const payload: SongRequestDto = {
       ...this.newSong(),
       songID: undefined
