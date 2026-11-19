@@ -1,15 +1,26 @@
-import { Injectable, signal } from '@angular/core';
-import { Song } from '../models/song';
+import { Injectable, inject, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, map } from 'rxjs';
+import { Song, ApiAlbum } from '../models/song';
 
 @Injectable()
 export class PlaylistSong {
-  songs = signal<Song[]>([
-    { id: 1, name: 'Song 1' },
-    { id: 2, name: 'Song 2' },
-    { id: 3, name: 'Song 3' }
-  ]);
+  private http = inject(HttpClient);
 
-  private nextId = 4;
+  songs = signal<Song[]>([]);
+
+  private nextId = -1;
+
+  getSongs(): Observable<Song[]> {
+    return this.http
+      .get<ApiAlbum[]>('https://jsonplaceholder.typicode.com/albums?_limit=10')
+      .pipe(
+        map(albums => albums.map(album => ({
+          id: album.id,
+          name: album.title
+        })))
+      );
+  }
 
   addSong(name: string): void {
     if (name.trim() === '') {
@@ -18,7 +29,7 @@ export class PlaylistSong {
 
     this.songs.update(songs => [
       ...songs,
-      { id: this.nextId++, name: name.trim() }
+      { id: this.nextId--, name: name.trim() }
     ]);
   }
 }

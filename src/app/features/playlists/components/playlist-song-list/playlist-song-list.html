@@ -12,7 +12,7 @@
 </div>
 
 <div class="song-list">
-  @for (song of songs(); track song.id) {
+  @for (song of displayedSongs(); track song.id) {
     <app-song-detail-card [song]="song"></app-song-detail-card>
   }
 </div>

@@ -1,4 +1,6 @@
 import { TestBed } from '@angular/core/testing';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { PlaylistSong } from './playlist-song';
 
 describe('PlaylistSong', () => {
@@ -6,8 +8,13 @@ describe('PlaylistSong', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    providers: [PlaylistSong],
-  });    
+      providers: [
+        PlaylistSong,
+        provideHttpClient(),
+        provideHttpClientTesting()
+      ],
+    });
+
     service = TestBed.inject(PlaylistSong);
   });
 

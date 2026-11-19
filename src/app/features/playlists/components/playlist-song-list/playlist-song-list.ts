@@ -1,4 +1,5 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, computed } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { PlaylistSong } from '../../../../services/playlist-song';
 import { SongDetailCard } from '../song-detail-card/song-detail-card';
 
@@ -11,7 +12,15 @@ import { SongDetailCard } from '../song-detail-card/song-detail-card';
 export class PlaylistSongList {
   playlistSongService = inject(PlaylistSong);
 
-  songs = this.playlistSongService.songs;
+  fetchedSongs = toSignal(this.playlistSongService.getSongs(), {
+    initialValue: []
+  });
+
+  displayedSongs = computed(() => [
+    ...this.fetchedSongs(),
+    ...this.playlistSongService.songs()
+  ]);
+
   newSongName = signal('');
 
   addSong(): void {
