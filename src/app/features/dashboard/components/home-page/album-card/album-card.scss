@@ -1,0 +1,16 @@
+:host {
+    display: contents;
+}
+
+.artistName, .albumName {
+        padding-left: 10px;
+        padding-right: 10px;
+        background-color: #7ee3ba;
+        text-align: center;
+        border: 1px solid black;
+        font-size: 24px;
+
+        &:hover {
+            background-color: #3fffb258;
+        }
+    }
