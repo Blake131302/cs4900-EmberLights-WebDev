@@ -6,7 +6,6 @@ import { HelpPage } from './features/dashboard/components/help-page/help-page';
 import { CreatePage } from './features/create-playlist/components/create-page/create-page';
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'orders', pathMatch: 'full' },
     { path: 'library', component: LibraryPage },
     { path: '', component: HomePage },
     { path: 'more-stats', component: MoreStats },
