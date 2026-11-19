@@ -1,8 +1,8 @@
-import { Service } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Statistics } from '../shared/interfaces/statistics';
 import { Observable, of } from 'rxjs';
 
-@Service()
+@Injectable({ providedIn: 'root' })
 export class StatsService {
 
     // GET statistics. Visible in dashboard and `more-stats` screen 
