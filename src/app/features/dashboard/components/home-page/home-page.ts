@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Statistics } from '../../../../shared/interfaces/statistics';
+import { Statistics } from '../../../../shared/interfaces/statistics.interface';
 import { RouterLink } from '@angular/router';
 import { AlbumsService } from '../../../../services/albums.service';
 import { FormsModule } from '@angular/forms';
@@ -37,5 +37,6 @@ export class HomePage {
     this.albumService.addAlbum(inAlbum, inArtist);
     this.albumName = '';
     this.artistName = '';
+    this.albumService.getAlbums();
   }
 }

@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { Album } from '../../../../../shared/interfaces/album';
+import { Album } from '../../../../../shared/interfaces/album.interface';
 
 @Component({
   imports: [],
