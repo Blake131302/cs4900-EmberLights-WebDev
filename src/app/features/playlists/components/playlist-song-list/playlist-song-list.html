@@ -5,14 +5,16 @@
     type="text"
     placeholder="Enter song name"
     [value]="newSongName()"
-    (input)="newSongName.set($any($event.target).value)"
+    (input)="onSongNameInput($event)"
   />
 
-  <button (click)="addSong()">Add Song</button>
+  <button type="button" (click)="addSong()">Add Song</button>
 </div>
 
 <div class="song-list">
   @for (song of displayedSongs(); track song.id) {
-    <app-song-detail-card [song]="song"></app-song-detail-card>
+    <app-song-detail-card [song]="song" />
+  } @empty {
+    <p>No songs in this playlist yet.</p>
   }
 </div>

@@ -23,6 +23,11 @@ export class PlaylistSongList {
 
   newSongName = signal('');
 
+  onSongNameInput(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    this.newSongName.set(input.value);
+  }
+
   addSong(): void {
     this.playlistSongService.addSong(this.newSongName());
     this.newSongName.set('');

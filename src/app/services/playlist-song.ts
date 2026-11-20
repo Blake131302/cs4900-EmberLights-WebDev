@@ -3,11 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { Song, ApiAlbum } from '../models/song';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class PlaylistSong {
   private http = inject(HttpClient);
 
-  songs = signal<Song[]>([]);
+  private readonly _songs = signal<Song[]>([]);
+  readonly songs = this._songs.asReadonly();
 
   private nextId = -1;
 
@@ -27,7 +28,7 @@ export class PlaylistSong {
       return;
     }
 
-    this.songs.update(songs => [
+    this._songs.update(songs => [
       ...songs,
       { id: this.nextId--, name: name.trim() }
     ]);
