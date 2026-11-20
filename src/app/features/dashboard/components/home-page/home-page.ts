@@ -1,9 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Statistics } from '../../../../shared/interfaces/statistics.interface';
 import { RouterLink } from '@angular/router';
 import { AlbumsService } from '../../../../services/albums.service';
 import { FormsModule } from '@angular/forms';
 import { AlbumCard } from './album-card/album-card.component';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   imports: [RouterLink, FormsModule, AlbumCard],
@@ -13,11 +14,16 @@ import { AlbumCard } from './album-card/album-card.component';
   templateUrl: './home-page.html',
 })
 export class HomePage {
+  
 
   albumName = '';
   artistName = '';
 
   private albumService = inject(AlbumsService);
+
+  readonly albums = toSignal(this.albumService.getAlbums(), {
+    initialValue: []
+  });
 
   monthlyStats: Statistics = 
     {totalPlaylists: 10, totalArtists: 40, totalGenres: 8, totalSongs: 300}
@@ -37,6 +43,5 @@ export class HomePage {
     this.albumService.addAlbum(inAlbum, inArtist);
     this.albumName = '';
     this.artistName = '';
-    this.albumService.getAlbums();
   }
 }

@@ -18,8 +18,11 @@ export class AlbumsService {
     { albumID: 8, albumName: 'Rust in Peace', artistName: 'Megadeth' },
   ]);
 
+  private readonly baseUrl = "http://localhost:8080/off-the-charts"
+  private readonly http = inject(HttpClient);
+
   readonly albums = this._mockAlbums.asReadonly();
-  private readonly apiService = inject(ApiService);
+  // private readonly apiService = inject(ApiService);
 
   addAlbum(albumName: string, artistName: string): void {
     const name = albumName.trim();
@@ -33,8 +36,7 @@ export class AlbumsService {
     return;
   }
 
-  getAlbums(): Observable<Album> {
-    console.log(this.apiService.get<Album[]>('album'));
-    return this.apiService.get('album');
+  getAlbums(): Observable<Album[]> {
+    return this.http.get<Album[]>(this.baseUrl + "/album");
   }
 }
