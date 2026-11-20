@@ -1,3 +1,7 @@
+/**
+ * Setting up for future development, currently not in use
+ */
+
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { Observable, timestamp } from "rxjs";

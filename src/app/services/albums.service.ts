@@ -3,6 +3,7 @@ import { Album } from '../shared/interfaces/album.interface';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from './api.service';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment.development';
 
 @Injectable({ providedIn: 'root' })
 export class AlbumsService {
@@ -18,11 +19,9 @@ export class AlbumsService {
     { albumID: 8, albumName: 'Rust in Peace', artistName: 'Megadeth' },
   ]);
 
-  private readonly baseUrl = "http://localhost:8080/off-the-charts"
   private readonly http = inject(HttpClient);
 
   readonly albums = this._mockAlbums.asReadonly();
-  // private readonly apiService = inject(ApiService);
 
   addAlbum(albumName: string, artistName: string): void {
     const name = albumName.trim();
@@ -37,6 +36,6 @@ export class AlbumsService {
   }
 
   getAlbums(): Observable<Album[]> {
-    return this.http.get<Album[]>(this.baseUrl + "/album");
+    return this.http.get<Album[]>(`${environment.baseURL}/album`);
   }
 }
