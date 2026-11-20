@@ -23,7 +23,7 @@
 </div>
 
 <div class="albums">
-@for (album of recentAlbums(); track album.albumID) {
+@for (album of albums(); track album.albumID) {
   <app-album-card [album]="album" />
 } @empty {
   <p>No recent albums found.</p>
