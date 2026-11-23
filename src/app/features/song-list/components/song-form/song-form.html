@@ -1,8 +1,23 @@
 <form [formGroup]="songForm" (ngSubmit)="onSubmit()">
-    <input type="text" formControlName="songName" placeholder="e.g. Bones in the Ocean"/>
-    <input type="number" formControlName="genreID" placeholder="e.g. 0"/>
-    <input type="text" formControlName="songDuration" placeholder="e.g. 00:03:45"/>
-    <input type="number" formControlName="albumID" placeholder="e.g. 1"/>
+    <div class="input-item">
+        <label for="songName">Name:</label>
+        <input name="songName" type="text" formControlName="songName" placeholder="e.g. Bones in the Ocean"/>
+    </div>
 
-    <button type="submit">Create</button>
+    <div class="input-item">
+        <label for="genreID">GenreID:</label>
+        <input name="genreID" type="number" formControlName="genreID" placeholder="e.g. 1"/>
+    </div>
+    
+    <div class="input-item">
+        <label for="songDuration">Song Duration:</label>
+        <input name="songDuration" type="text" formControlName="songDuration" placeholder="e.g. 00:03:45"/>
+    </div>
+    
+    <div class="input-item">
+        <label for="albumID">AlbumID</label>
+        <input name="albumID" type="number" formControlName="albumID" placeholder="e.g. 1"/>
+    </div>
+
+    <button type="submit" [disabled]="songForm.invalid">Create</button>
 </form>

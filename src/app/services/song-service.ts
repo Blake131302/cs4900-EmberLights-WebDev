@@ -1,8 +1,9 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { SongDto, SongRequestDto } from '../models/songDto';
+import { tap } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
@@ -11,8 +12,11 @@ export class SongService {
     private readonly http = inject(HttpClient);
     private readonly baseURL = environment.apiURL;
 
+    private _songs = signal<SongDto[]>([])
+    readonly songs = this._songs.asReadonly();
+
     getSongs(): Observable<SongDto[]> {
-        return this.http.get<SongDto[]>(`${this.baseURL}/song`);
+        return this.http.get<SongDto[]>(`${this.baseURL}/song`).pipe(tap((songs) => this._songs.set(songs)));
     }
 
     getSongById(songID: number): Observable<SongDto> {
@@ -20,7 +24,9 @@ export class SongService {
     }
 
     createSong(song: SongRequestDto): Observable<SongDto> {
-        return this.http.post<SongDto>(`${this.baseURL}/song`, song);
+        return this.http.post<SongDto>(`${this.baseURL}/song`, song).pipe(tap((createdSong) => {
+            this._songs.update((current) => [...current, createdSong])
+        }));
     }
 
     updateSong(song: SongRequestDto): Observable<SongRequestDto> {

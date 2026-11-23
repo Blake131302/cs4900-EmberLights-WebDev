@@ -13,12 +13,9 @@ import { SongForm } from '../song-form/song-form';
 })
 export class SongList {
   private songService = inject(SongService);
-  private _songs = signal<SongDto[]>([])
-  readonly songs = this._songs.asReadonly();
+  readonly songs = this.songService.songs;
 
-   ngOnInit() {
-    this.songService.getSongs().subscribe(songs => {
-      this._songs.set(songs);
-    });
+  ngOnInit() {
+    this.songService.getSongs().subscribe()
   }
 }
