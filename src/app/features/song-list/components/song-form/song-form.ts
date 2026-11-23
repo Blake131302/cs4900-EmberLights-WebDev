@@ -32,6 +32,7 @@ export class SongForm {
       };
       console.log("Creating Song...")
       this.songService.createSong(songData).subscribe();
+      
     } else {
       console.log("Form not valid")
     }
