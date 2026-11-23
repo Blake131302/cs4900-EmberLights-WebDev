@@ -1,1 +1,8 @@
-<p>song-form works!</p>
+<form [formGroup]="songForm" (ngSubmit)="onSubmit()">
+    <input type="text" formControlName="songName" placeholder="e.g. Bones in the Ocean"/>
+    <input type="number" formControlName="genreID" placeholder="e.g. 0"/>
+    <input type="text" formControlName="songDuration" placeholder="e.g. 00:03:45"/>
+    <input type="number" formControlName="albumID" placeholder="e.g. 1"/>
+
+    <button type="submit">Create</button>
+</form>
