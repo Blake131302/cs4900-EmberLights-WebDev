@@ -16,7 +16,7 @@ export class AlbumForm {
   private readonly router = inject(Router);
 
   readonly isSubmitting = signal(false);
-  readonly errMesage = signal<string | null>(null);
+  readonly errMessage = signal<string | null>(null);
 
   readonly form: FormGroup = this.fb.group({
     albumName: ['', [Validators.required, Validators.maxLength(100)]],
@@ -30,7 +30,8 @@ export class AlbumForm {
     }
 
     this.isSubmitting.set(true);
-    this.errMesage.set(null);
+    this.errMessage
+.set(null);
 
     const payload = this.form.value;
 
@@ -40,7 +41,8 @@ export class AlbumForm {
       },
       error: (err) => {
         this.isSubmitting.set(false);
-        this.errMesage.set('Failed to create album.');
+        this.errMessage
+    .set('Failed to create album.');
       }
     });
   }
