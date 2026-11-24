@@ -5,6 +5,8 @@
 <p>Total Songs: {{ monthlyStats.totalSongs }}</p>
 <a routerLink="/more-stats">More Statistics</a>
 
+<app-album-form></app-album-form>
+
 <div class="albumMessage">
     @if (recentAlbums().length > 0) {
     <p>Displaying {{ recentAlbums().length }} recently added albums.</p>
