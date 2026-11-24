@@ -10,7 +10,7 @@
     </li>
 
     <!--List Contents-->
-    @for (song of songs(); track song.songID) {
+    @for (song of paginatedSongs(); track song.songID) {
         <li class="song-row">
             <app-song-details [song]="song" />
             <span><button type="button" (click)="selectSongForEdit(song)">Edit</button></span>
@@ -27,6 +27,26 @@
     }
 </ul>
 
+<div class="pagination-controls">
+    <button type="button" (click)="prevPage()" [disabled]="currentPage() === 1">
+        Previous
+    </button>
+     <span>Page {{ currentPage() }} of {{ totalPages() }}</span>
+
+  <button 
+    type="button" 
+    (click)="nextPage()" 
+    [disabled]="currentPage() >= totalPages()">
+    Next
+  </button>
+
+  <select [value]="pageSize()" (change)="setPageSize(+$any($event.target).value)">
+    <option value="5">5 per page</option>
+    <option value="10">10 per page</option>
+    <option value="25">25 per page</option>
+  </select>
+</div>
+
 <!-- Song Input Form -->
 <app-song-form 
     [songToEdit]="selectedSong()"
@@ -34,3 +54,7 @@
     (songUpdated)="onSongUpdated($event)"
     (cancelEdit)="selectedSong.set(undefined)"
 />
+
+@for (song of randomSong(); track song.songID) {
+    <ul><app-song-details [song]="song"></app-song-details></ul>
+} 

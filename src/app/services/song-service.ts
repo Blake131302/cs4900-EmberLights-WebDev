@@ -31,4 +31,17 @@ export class SongService {
     searchSong(song: SongRequestDto): Observable<SongDto[]> {
         return this.http.post<SongDto[]>(`${this.baseURL}/song/search`, song);
     }
+
+    multiRandomSong(genreName: string, num: number): Observable<SongDto[]> {
+        return this.http.get<SongDto[]>(`${this.baseURL}/song/random/${num}`, {
+            params: {genreName}
+        });
+    }
+
+    randomSong(genreName: string): Observable<SongDto> {
+        return this.http.get<SongDto>(`${this.baseURL}/song/random`, {
+            params: {genreName}
+        }
+        );
+    }
 }
