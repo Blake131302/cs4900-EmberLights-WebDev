@@ -6,6 +6,7 @@ import { HelpPage } from './features/dashboard/components/help-page/help-page';
 import { HomePage } from './features/dashboard/components/home-page/home-page';
 import { MoreStats } from './features/more-stats/more-stats-page/more-stats';
 import { PlaylistDetail } from './features/playlists/components/playlist-detail/playlist-detail';
+import { unsavedChangesGuard } from './shared/interfaces/unsaved-changes.guard';
 
 export const routes: Routes = [
     { path: 'library', component: LibraryPage },
@@ -13,6 +14,6 @@ export const routes: Routes = [
     { path: 'more-stats', component: MoreStats },
     { path: 'help', component: HelpPage},
     { path: 'song-list', component: SongList },
-    { path: 'create-playlist', component: CreatePage},
+    { path: 'create-playlist', component: CreatePage, canDeactivate: [unsavedChangesGuard]},
     { path: 'playlists/:id', component: PlaylistDetail },
 ];

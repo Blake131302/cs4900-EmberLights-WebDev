@@ -1,13 +1,15 @@
-import { Component, DestroyRef, inject } from '@angular/core';
+import { Component, DestroyRef, HostListener, inject } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ConfirmCancel } from '../../../../shared/components/confirm-cancel/confirm-cancel';
 import { GenreService } from '../../../../services/genre-service';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { catchError, of } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
 import { Genre } from '../../../../models/Genre';
 import { FormBuilder, ReactiveFormsModule, Validators, ɵInternalFormsSharedModule } from '@angular/forms';
 import { PlaylistService } from '../../../../services/playlist-list-service';
 import { LibraryPlaylistsDetails } from '../../../library/components/library-playlists-details/library-playlists-details';
+import { readonly } from '@angular/forms/signals';
+import { HasUnsavedChanges } from '../../../../shared/interfaces/unsaved-changes.guard';
 
 @Component({
   imports: [MatDialogModule, ɵInternalFormsSharedModule, ReactiveFormsModule, LibraryPlaylistsDetails],
@@ -15,7 +17,7 @@ import { LibraryPlaylistsDetails } from '../../../library/components/library-pla
   styleUrl: './create-page.scss',
   templateUrl: './create-page.html',
 })
-export class CreatePage {
+export class CreatePage implements HasUnsavedChanges {
   private dialog = inject(MatDialog);
   private genreService = inject(GenreService);
   private playlistService = inject(PlaylistService);
@@ -23,7 +25,7 @@ export class CreatePage {
   private destroyRef = inject(DestroyRef);
 
   // Temporary for Development REMOVE LATER
-  playlists = this.playlistService.playlists;
+  readonly playlists = this.playlistService.playlists;
 
   readonly genres = toSignal(
     this.genreService.getGenres().pipe(
@@ -51,16 +53,25 @@ export class CreatePage {
     this.playlistForm.reset();
   }
 
+  canDeactivate(): boolean | Observable<boolean> {
+    if (this.playlistForm.dirty) {
+      return this.openDialog();
+    }
+    return true;
+  }
 
-  openDialog() {
+  openDialog(): Observable<boolean> {
     const dialogRef = this.dialog.open(ConfirmCancel, {
       width: '400px',
       disableClose: true,
       data: { name: 'Create Playlist' },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('Dialog result:', result);
-    });
+    return dialogRef.afterClosed();
+  }
+
+  @HostListener('window:beforeunload', ['$event'])
+  onBeforeUnload(event: BeforeUnloadEvent): void {
+    event.preventDefault();
   }
 }
