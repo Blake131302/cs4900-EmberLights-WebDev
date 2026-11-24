@@ -1,13 +1,8 @@
-$card-color: #AAAAAA;
 $button-color: #1E1E1E;
 
 .create-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    color: black;
-    margin: clamp(1rem, 4vw, 3rem);
+    align-items: center;
 }
 
 .page-header {
@@ -17,17 +12,8 @@ $button-color: #1E1E1E;
 }
 
 form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    background-color: $card-color;
-
-    width: min(90%, 1000px);
-    padding: clamp(1.25rem, 4vw, 3rem);
-    box-sizing: border-box;
-    border-radius: 8px;
-    font-size: clamp(1rem, 1.2vw + 0.75rem, 1.25rem);
+    align-items: center;
 
     .input-item {
         display: grid;
