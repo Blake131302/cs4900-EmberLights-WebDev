@@ -5,7 +5,8 @@
 <p>Total Songs: {{ monthlyStats.totalSongs }}</p>
 <a routerLink="/more-stats">More Statistics</a>
 
-<app-album-form></app-album-form>
+<app-album-form
+  (albumCreated)="fetchAlbums()"></app-album-form>
 
 <div class="albumMessage">
     @if (albums().length > 0) {
@@ -15,7 +16,9 @@
 
 <div class="albums">
 @for (album of albums(); track album.albumID) {
-  <app-album-card [album]="album" />
+  <app-album-card 
+    [album]="album" 
+    (albumUpdated)="fetchAlbums()"/>
 } @empty {
   <p>No recent albums found.</p>
 }

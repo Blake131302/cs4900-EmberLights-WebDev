@@ -1,7 +1,9 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, input, Input, output, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AlbumsService } from '../../../../../services/albums.service';
 import { Router } from '@angular/router';
+import { HomePage } from '../home-page';
+import { Album } from '../../../../../shared/interfaces/album.interface';
 
 @Component({
   imports: [ReactiveFormsModule],
@@ -18,11 +20,14 @@ export class AlbumForm {
   readonly isSubmitting = signal(false);
   readonly errMessage = signal<string | null>(null);
 
+  albumCreated = output<Album>();
+
   readonly form: FormGroup = this.fb.group({
     albumName: ['', [Validators.required, Validators.maxLength(100)]],
     artistName: ['', [Validators.required, Validators.maxLength(60)]]
   });
 
+  // Send a signal to HomePage to add new album form to end of table
   onSubmit(): void {
     if (this.form.invalid || this.isSubmitting()) {
       this.form.markAllAsTouched();
@@ -38,6 +43,7 @@ export class AlbumForm {
     this.albumService.addAlbum(payload).subscribe({
       next: (createdAlbum) => {
         this.isSubmitting.set(false);
+        this.albumCreated.emit(payload)
       },
       error: (err) => {
         this.isSubmitting.set(false);

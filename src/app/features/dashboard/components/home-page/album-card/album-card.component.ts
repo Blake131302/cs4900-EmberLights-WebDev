@@ -1,4 +1,4 @@
-import { Component, inject, input, signal } from '@angular/core';
+import { Component, inject, input, output, signal } from '@angular/core';
 import { Album } from '../../../../../shared/interfaces/album.interface';
 import { AlbumsService } from '../../../../../services/albums.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -17,12 +17,15 @@ export class AlbumCard {
   readonly isSubmitting = signal(false);
   readonly errMessage = signal<string | null>(null);
 
+  readonly albumUpdated = output<Album>();
+
   readonly form: FormGroup = this.fb.group({
     albumName: ['', [Validators.required, Validators.maxLength(100)]],
     artistName: ['', [Validators.required, Validators.maxLength(60)]]
   })
 
   readonly album = input.required<Album>();
+
   updateAlbum(albumID: number): void {
     this.form.setValue({
       albumName: "Terraformer",
@@ -31,9 +34,10 @@ export class AlbumCard {
 
     const payload = this.form.value;
     console.log(`Form Value: ${payload}`);
-    this.albumService.updateAlbum(albumID, this.form.value).subscribe({
+    this.albumService.updateAlbum(albumID, payload).subscribe({
       next: (updatedAlbum) => {
         this.isSubmitting.set(false);
+        this.albumUpdated.emit(payload);
       },
       error: (err) => {
         this.isSubmitting.set(false);
