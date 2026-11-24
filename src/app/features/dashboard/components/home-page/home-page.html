@@ -8,10 +8,8 @@
 <app-album-form></app-album-form>
 
 <div class="albumMessage">
-    @if (recentAlbums().length > 0) {
-    <p>Displaying {{ recentAlbums().length }} recently added albums.</p>
-    } @else {
-    <p>No recent albums found.</p>
+    @if (albums().length > 0) {
+    <p>Displaying {{ albums().length }} recently added albums.</p>
     }
 </div>
 
