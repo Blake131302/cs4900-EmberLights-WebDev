@@ -9,25 +9,22 @@ import { FormGroup } from '@angular/forms';
 @Injectable({ providedIn: 'root' })
 export class AlbumsService {
 
-  private readonly _mockAlbums = signal<Album[]>([
-    { albumID: 1, albumName: 'Ride The Lightning', artistName: 'Metallica' },
-    { albumID: 2, albumName: 'Toxicity', artistName: 'System of a Down' },
-    { albumID: 3, albumName: 'Superheaven', artistName: 'Superheaven' },
-    { albumID: 4, albumName: 'Master of Puppets', artistName: 'Metallica' },
-    { albumID: 5, albumName: 'Paranoid', artistName: 'Black Sabbath' },
-    { albumID: 6, albumName: 'Painkiller', artistName: 'Judas Priest' },
-    { albumID: 7, albumName: 'The Number of the Beast', artistName: 'Iron Maiden' },
-    { albumID: 8, albumName: 'Rust in Peace', artistName: 'Megadeth' },
-  ]);
-
   private readonly http = inject(HttpClient);
 
-  readonly albums = this._mockAlbums.asReadonly();
-
+  /**
+   * Adds new album record to database
+   * Body consists of `albumName` and `artistName`
+   * @param body 
+   * @returns 
+   */
   addAlbum(body: FormGroup): Observable<Album[]> {
     return this.http.post<Album[]>(`${environment.baseURL}/album`, body);
   }
 
+  /**
+   * Retrieves all albums from database
+   * @returns 
+   */
   getAlbums(): Observable<Album[]> {
     return this.http.get<Album[]>(`${environment.baseURL}/album`);
   }

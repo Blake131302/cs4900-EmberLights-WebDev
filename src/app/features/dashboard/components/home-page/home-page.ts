@@ -28,6 +28,4 @@ export class HomePage {
 
   monthlyStats: Statistics = 
     {totalPlaylists: 10, totalArtists: 40, totalGenres: 8, totalSongs: 300}
-
-  recentAlbums = this.albumService.albums;
 }
