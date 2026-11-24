@@ -1,5 +1,5 @@
-$playlist-list-border: 1px solid #ffffff;
-$playlist-list-item-border: 1px solid #ffffff;
+$playlist-list-border: 1px solid #1E1E1E;
+$playlist-list-item-border: 1px solid #1E1E1E;
 
 .playlist-item{
     border: $playlist-list-border;
@@ -22,9 +22,12 @@ ul.playlist-list {
     column-gap: 2px; 
     padding: 10px;
     align-items: center;
-    color: #ffffff;
+    column-gap: 2rem;
+    column-rule: 1px solid #1E1E1E;
+    border-color: $playlist-list-border;
 }
  
 .playlist-summary {
     padding: 10px;
+    list-style-type: none;
 }
