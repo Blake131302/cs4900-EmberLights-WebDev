@@ -1,8 +1,10 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, DestroyRef, inject, signal } from '@angular/core';
 import { SongService } from '../../../../services/song-service';
 import { SongDetails } from '../song-details/song-details';
 import { SongDto, SongRequestDto } from '../../../../models/songDto';
 import { SongForm } from '../song-form/song-form';
+import { catchError, of } from 'rxjs';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   imports: [SongDetails, SongForm],
@@ -12,10 +14,29 @@ import { SongForm } from '../song-form/song-form';
   standalone: true,
 })
 export class SongList {
-  private songService = inject(SongService);
-  readonly songs = this.songService.songs;
+  private readonly songService = inject(SongService);
+  private readonly destroyRef = inject(DestroyRef)
 
-  ngOnInit() {
-    this.songService.getSongs().subscribe()
+  //Use a writable signal so I don't have to refetch everything every update
+  songs = signal<SongDto[]>([]);
+
+  constructor() {
+    this.fetchSongs();
+  }
+
+  fetchSongs(): void {
+    this.songService.getSongs().pipe(
+      catchError(err => {
+        console.error("Failed to load songs", err);
+        return of<SongDto[]>([]);
+      }),
+      takeUntilDestroyed(this.destroyRef)
+    ).subscribe(fetchedSongs => {
+      this.songs.set(fetchedSongs);
+    });
+  }
+
+  onSongCreated(newSong: SongDto): void {
+    this.songs.update(currentSongs => [...currentSongs, newSong]);
   }
 }

@@ -27,7 +27,7 @@ export interface SongRequestDto {
 }
   */
  export interface SongDto { //update later to use other interfaces for nested objects
-    songID?: number
+    songID: number
     songName: string
     genre: {
         genreID: number
