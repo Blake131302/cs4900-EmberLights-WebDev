@@ -25,18 +25,7 @@ export class AlbumsService {
   readonly albums = this._mockAlbums.asReadonly();
 
   addAlbum(body: FormGroup): Observable<Album[]> {
-    const name = body.value.albumName.trim();
-    const artist = body.value.artistName.trim();
-    // if (!name || !artist) return of({});
-
-    // this._mockAlbums.update(list => [
-    //   ...list,
-    //   { albumID: list.length + 1, albumName: name, artistName: artist}
-    // ])
-    return this.http.post<Album[]>(`${environment.baseURL}/album`, {
-      "albumName": name,
-      "artistName": artist
-    });
+    return this.http.post<Album[]>(`${environment.baseURL}/album`, body);
   }
 
   getAlbums(): Observable<Album[]> {
