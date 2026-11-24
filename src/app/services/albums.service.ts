@@ -2,8 +2,9 @@ import { inject, Injectable, signal } from '@angular/core';
 import { Album } from '../shared/interfaces/album.interface';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from './api.service';
-import { Observable } from 'rxjs';
+import { empty, Observable, of } from 'rxjs';
 import { environment } from '../../environments/environment.development';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({ providedIn: 'root' })
 export class AlbumsService {
@@ -23,16 +24,19 @@ export class AlbumsService {
 
   readonly albums = this._mockAlbums.asReadonly();
 
-  addAlbum(albumName: string, artistName: string): void {
-    const name = albumName.trim();
-    const artist = artistName.trim();
-    if (!name || !artist) return;
+  addAlbum(body: FormGroup): Observable<Album[]> {
+    const name = body.value.albumName.trim();
+    const artist = body.value.artistName.trim();
+    // if (!name || !artist) return of({});
 
-    this._mockAlbums.update(list => [
-      ...list,
-      { albumID: list.length + 1, albumName: name, artistName: artist}
-    ])
-    return;
+    // this._mockAlbums.update(list => [
+    //   ...list,
+    //   { albumID: list.length + 1, albumName: name, artistName: artist}
+    // ])
+    return this.http.post<Album[]>(`${environment.baseURL}/album`, {
+      "albumName": name,
+      "artistName": artist
+    });
   }
 
   getAlbums(): Observable<Album[]> {

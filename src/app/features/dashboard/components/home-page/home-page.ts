@@ -29,19 +29,4 @@ export class HomePage {
     {totalPlaylists: 10, totalArtists: 40, totalGenres: 8, totalSongs: 300}
 
   recentAlbums = this.albumService.albums;
-
-  submitAlbum() {
-    const inAlbum = this.albumName;
-    const inArtist = this.artistName;
-
-    if ((inAlbum == '') || (inArtist == '')) {
-      alert("Album and Artist needs filled out.")
-      return;
-    }
-
-    console.log(inAlbum + " " + inArtist);
-    this.albumService.addAlbum(inAlbum, inArtist);
-    this.albumName = '';
-    this.artistName = '';
-  }
 }

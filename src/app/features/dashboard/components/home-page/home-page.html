@@ -5,15 +5,6 @@
 <p>Total Songs: {{ monthlyStats.totalSongs }}</p>
 <a routerLink="/more-stats">More Statistics</a>
 
-<div class="album-form-container">
-    <!-- <form [formGroup]="albumForm" (ngSubmit)="addAlbum()" class="album-form"> -->
-        <h3>Add an album:</h3>
-        <input type="text" placeholder="Album Name" id="album" [(ngModel)]="albumName" />
-        <input type="text" placeholder="Artist Name" id="artistName" [(ngModel)]="artistName" />
-        <button (click)="submitAlbum()">Submit</button>
-    <!-- </form> -->
-</div>
-
 <div class="albumMessage">
     @if (recentAlbums().length > 0) {
     <p>Displaying {{ recentAlbums().length }} recently added albums.</p>

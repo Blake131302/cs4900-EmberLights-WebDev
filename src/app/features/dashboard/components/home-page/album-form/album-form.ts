@@ -1,6 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AlbumsService } from '../../../../../services/albums.service';
+import { Router } from '@angular/router';
 
 @Component({
   imports: [ReactiveFormsModule],
@@ -12,6 +13,7 @@ export class AlbumForm {
 
   private readonly fb = inject(FormBuilder);
   private readonly albumService = inject(AlbumsService);
+  private readonly router = inject(Router);
 
   readonly isSubmitting = signal(false);
   readonly errMesage = signal<string | null>(null);
@@ -32,9 +34,19 @@ export class AlbumForm {
 
     const payload = this.form.value;
 
-    // Create Album Service function here
+    this.albumService.addAlbum(payload).subscribe({
+      next: (createdAlbum) => {
+        this.isSubmitting.set(false);
+      },
+      error: (err) => {
+        this.isSubmitting.set(false);
+        this.errMesage.set('Failed to create album.');
+      }
+    });
+  }
 
-    
+  onCancel(): void {
+    this.router.navigate(['']);
   }
 
 }
