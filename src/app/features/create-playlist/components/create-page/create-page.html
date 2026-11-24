@@ -1,34 +1,47 @@
 
 <div class="create-page">
-    <form>
+    <form [formGroup]="playlistForm" (ngSubmit)="onSubmit()">
         <h1 class="page-header">Create a Playlist</h1>
         <div class="input-item">
             <label for="playlist-name">Playlist Name:</label>
-            <input type="text" id="playlist-name" name="playlist-name" required>
+            <input type="text" id="playlist-name" name="playlist-name" formControlName="playlistName">
         </div>
 
         <div class="input-item">
             <label for="genre">Genre:</label>
-            <select id="genre" name="genre" required>
-                <option value="Rock">Rock</option>
-                <option value="Pop">Pop</option>
-                <option value="Folk">Folk</option>
-                <option value="Metal">Metal</option>
+            <select id="genre" name="genre" formControlName="genreID">
+                @for (genre of genres(); track genre.genreID) {
+                    <option [ngValue]="genre.genreID">{{ genre.genreName }}</option>
+                } @empty {
+                    <option [ngValue]="null" disabled>No Genres Available</option>
+                }
+
             </select>
         </div>
 
         <div class="input-item">
             <label for="num-songs">Number of Songs:</label>
-            <input type="number" id="num-songs" name="num-songs" required>
+            <input type="number" id="num-songs" name="num-songs" formControlName="numberOfSongs">
         </div>
 
         <div class="create-button">
-            <button type="button">Create</button>
+            <button type="Submit" [disabled]="playlistForm.invalid">Create</button>
         </div>
     </form>
 
     <!-- Example, this dialogue will instead be tied to leaving the page with data in the form -->
     <!-- <button class="cancel-button" (click)="openDialog()">Cancel</button> -->
+
+
+    <!-- Temporary for development-->
+    <!--List Contents-->
+    @for (playlist of playlists(); track playlist.playlistID) {
+        <li class="playlist-row">
+            <app-library-playlists-details [playlist]="playlist" style="color: white"/>
+        </li>
+    } @empty {
+        <li class="playlist-empty">No playlists.</li>
+    }
 </div>
     
     

@@ -11,7 +11,9 @@ export class GenreService {
     private readonly http = inject(HttpClient);
     private readonly baseUrl = environment.apiUrl;
 
-    genre = signal<Genre[]>([]);
+    getGenres(): Observable<Genre[]>{
+        return this.http.get<Genre[]>(`${this.baseUrl}/genre`)
+    }
 
     getGenreById(id: number): Observable<Genre>{
         return this.http.get<Genre>(`${this.baseUrl}/genre/${id}`);
