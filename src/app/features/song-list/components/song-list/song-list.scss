@@ -14,7 +14,7 @@ ul.song-list {
 
 // Format as a grid
 .song-header, .song-row {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 0.5fr;
     padding: 0.5rem;
     align-items: center;
 }
@@ -25,7 +25,7 @@ ul.song-list {
 }
 
 .song-list-summary {
-    grid-column: span 5;
+    grid-column: span 6;
     display: flex;
     justify-content: space-between;
     align-items: center;

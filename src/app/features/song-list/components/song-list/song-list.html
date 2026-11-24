@@ -13,7 +13,7 @@
     @for (song of songs(); track song.songID) {
         <li class="song-row">
             <app-song-details [song]="song" />
-            <button type="button" (click)="selectSongForEdit(song)">Edit</button>
+            <span><button type="button" (click)="selectSongForEdit(song)">Edit</button></span>
         </li>
     } @empty {
         <li class="song-empty">No songs available.</li>
