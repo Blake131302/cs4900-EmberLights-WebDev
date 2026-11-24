@@ -1,8 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
-import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
+import {
+  provideHttpClientTesting,
+  HttpTestingController
+} from '@angular/common/http/testing';
 import { PlaylistSongList } from './playlist-song-list';
-import { PlaylistSong } from '../../../../services/playlist-song';
 
 describe('PlaylistSongList', () => {
   let component: PlaylistSongList;
@@ -12,7 +14,6 @@ describe('PlaylistSongList', () => {
     await TestBed.configureTestingModule({
       imports: [PlaylistSongList],
       providers: [
-        PlaylistSong,
         provideHttpClient(),
         provideHttpClientTesting()
       ],
@@ -24,14 +25,52 @@ describe('PlaylistSongList', () => {
     fixture.detectChanges();
 
     const httpTesting = TestBed.inject(HttpTestingController);
+
     httpTesting.expectOne(
-      'https://jsonplaceholder.typicode.com/albums?_limit=10'
+      '/off-the-charts/song'
     ).flush([]);
 
     await fixture.whenStable();
   });
 
+  afterEach(() => {
+    TestBed.inject(HttpTestingController).verify();
+  });
+
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should display an empty song list', () => {
+    expect(component.displayedSongs()).toEqual([]);
+    expect(component.loadError()).toBe(false);
+  });
+
+  it('should refresh songs', () => {
+    component.refreshSongs();
+
+    const httpTesting = TestBed.inject(HttpTestingController);
+    const request = httpTesting.expectOne('/off-the-charts/song');
+
+    expect(request.request.method).toBe('GET');
+
+    request.flush([]);
+  });
+
+  it('should handle loading errors', () => {
+    component.refreshSongs();
+
+    const httpTesting = TestBed.inject(HttpTestingController);
+
+    httpTesting.expectOne('/off-the-charts/song').flush(
+      'Server error',
+      {
+        status: 500,
+        statusText: 'Internal Server Error'
+      }
+    );
+
+    expect(component.loadError()).toBe(true);
+    expect(component.displayedSongs()).toEqual([]);
   });
 });

@@ -1,35 +1,55 @@
-import { Component, inject, signal, computed } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { BehaviorSubject, catchError, of, switchMap } from 'rxjs';
+import { Song } from '../../../../models/song';
 import { PlaylistSong } from '../../../../services/playlist-song';
 import { SongDetailCard } from '../song-detail-card/song-detail-card';
+import { PlaylistSongForm } from '../playlist-song-form/playlist-song-form';
 
 @Component({
-  imports: [SongDetailCard],
+  imports: [SongDetailCard, PlaylistSongForm],
   selector: 'app-playlist-song-list',
   styleUrl: './playlist-song-list.scss',
   templateUrl: './playlist-song-list.html',
 })
 export class PlaylistSongList {
-  playlistSongService = inject(PlaylistSong);
+  private readonly playlistSongService = inject(PlaylistSong);
 
-  fetchedSongs = toSignal(this.playlistSongService.getSongs(), {
-    initialValue: []
-  });
+  readonly loadError = signal(false);
+  readonly editingSong = signal<Song | null>(null);
 
-  displayedSongs = computed(() => [
-    ...this.fetchedSongs(),
-    ...this.playlistSongService.songs()
-  ]);
+  private readonly refresh$ =
+    new BehaviorSubject<void>(undefined);
 
-  newSongName = signal('');
+  readonly displayedSongs = toSignal(
+    this.refresh$.pipe(
+      switchMap(() =>
+        this.playlistSongService.getSongs().pipe(
+          catchError(() => {
+            this.loadError.set(true);
+            return of<Song[]>([]);
+          })
+        )
+      )
+    ),
+    { initialValue: [] }
+  );
 
-  onSongNameInput(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    this.newSongName.set(input.value);
+  refreshSongs(): void {
+    this.loadError.set(false);
+    this.refresh$.next();
   }
 
-  addSong(): void {
-    this.playlistSongService.addSong(this.newSongName());
-    this.newSongName.set('');
+  editSong(song: Song): void {
+    this.editingSong.set(song);
+  }
+
+  onSongSaved(): void {
+    this.editingSong.set(null);
+    this.refreshSongs();
+  }
+
+  cancelEdit(): void {
+    this.editingSong.set(null);
   }
 }

@@ -14,3 +14,22 @@ p {
   color: #666;
   font-size: 14px;
 }
+
+button {
+  margin-top: 10px;
+  padding: 8px 15px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}

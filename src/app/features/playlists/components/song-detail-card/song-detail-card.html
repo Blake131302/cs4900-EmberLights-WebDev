@@ -1,4 +1,16 @@
 <div class="song-card">
-  <h4>{{ song().name }}</h4>
-  <p>Song ID: {{ song().id }}</p>
+  <h4>{{ song().songName }}</h4>
+
+  <p>Song ID: {{ song().songID }}</p>
+  <p>Genre: {{ song().genre.genreName }}</p>
+  <p>Album: {{ song().album.albumName }}</p>
+  <p>Artist: {{ song().album.artistName }}</p>
+
+  <button
+    type="button"
+    [disabled]="editDisabled()"
+    (click)="edit.emit(song())"
+  >
+    Edit
+  </button>
 </div>

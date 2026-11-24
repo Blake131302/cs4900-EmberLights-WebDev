@@ -1,36 +1,29 @@
-import { Injectable, inject, signal } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
-import { Song, ApiAlbum } from '../models/song';
+import { Observable } from 'rxjs';
+import { Song, SongRequestDto } from '../models/song';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class PlaylistSong {
-  private http = inject(HttpClient);
-
-  private readonly _songs = signal<Song[]>([]);
-  readonly songs = this._songs.asReadonly();
-
-  private nextId = -1;
+  private readonly http = inject(HttpClient);
+  private readonly baseURL = environment.apiURL;
 
   getSongs(): Observable<Song[]> {
-    return this.http
-      .get<ApiAlbum[]>('https://jsonplaceholder.typicode.com/albums?_limit=10')
-      .pipe(
-        map(albums => albums.map(album => ({
-          id: album.id,
-          name: album.title
-        })))
-      );
+    return this.http.get<Song[]>(`${this.baseURL}/song`);
   }
 
-  addSong(name: string): void {
-    if (name.trim() === '') {
-      return;
-    }
+  createSong(song: SongRequestDto): Observable<Song> {
+    return this.http.post<Song>(
+      `${this.baseURL}/song`,
+      song
+    );
+  }
 
-    this._songs.update(songs => [
-      ...songs,
-      { id: this.nextId--, name: name.trim() }
-    ]);
+  updateSong(id: number, song: SongRequestDto): Observable<Song> {
+    return this.http.put<Song>(
+      `${this.baseURL}/song/${id}`,
+      { ...song, songID: id }
+    );
   }
 }

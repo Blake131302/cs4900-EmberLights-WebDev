@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { Song } from '../../../../models/song';
 
 @Component({
@@ -9,4 +9,6 @@ import { Song } from '../../../../models/song';
 })
 export class SongDetailCard {
   song = input.required<Song>();
+  edit = output<Song>();
+  editDisabled = input(false);
 }

@@ -1,8 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
-import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
+import {
+  provideHttpClientTesting,
+  HttpTestingController
+} from '@angular/common/http/testing';
 import { PlaylistDetail } from './playlist-detail';
-import { PlaylistSong } from '../../../../services/playlist-song';
 
 describe('PlaylistDetail', () => {
   let component: PlaylistDetail;
@@ -12,7 +14,6 @@ describe('PlaylistDetail', () => {
     await TestBed.configureTestingModule({
       imports: [PlaylistDetail],
       providers: [
-        PlaylistSong,
         provideHttpClient(),
         provideHttpClientTesting()
       ],
@@ -24,11 +25,16 @@ describe('PlaylistDetail', () => {
     fixture.detectChanges();
 
     const httpTesting = TestBed.inject(HttpTestingController);
+
     httpTesting.expectOne(
-      'https://jsonplaceholder.typicode.com/albums?_limit=10'
+      '/off-the-charts/song'
     ).flush([]);
 
     await fixture.whenStable();
+  });
+
+  afterEach(() => {
+    TestBed.inject(HttpTestingController).verify();
   });
 
   it('should create', () => {
