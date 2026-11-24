@@ -1,0 +1,33 @@
+$playlist-list-border: 1px solid #1E1E1E;
+$playlist-list-item-border: 1px solid #1E1E1E;
+
+.playlist-item{
+    border: $playlist-list-border;
+    list-style-type: none;
+}
+
+ul.playlist-list {
+    border: $playlist-list-border;
+    align-self: center;
+}
+
+.playlist-list li {
+    border-bottom: $playlist-list-item-border;
+}
+
+// Format as a grid
+.playlist-header, .playlist-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    column-gap: 2px; 
+    padding: 10px;
+    align-items: center;
+    column-gap: 2rem;
+    column-rule: 1px solid #1E1E1E;
+    border-color: $playlist-list-border;
+}
+ 
+.playlist-summary {
+    padding: 10px;
+    list-style-type: none;
+}

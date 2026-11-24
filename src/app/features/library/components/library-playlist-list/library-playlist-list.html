@@ -1,0 +1,35 @@
+
+<ul class="library-playlist-list">
+    <!--Header row-->
+    <li class="playlist-header">
+        <span>Name</span>
+        <span>Genre</span>
+        <span>Number of songs</span>
+        <span>Duration</span>
+    </li>
+
+    <!--List Contents-->
+    @for (playlist of playlists(); track playlist.playlistID) {
+        <li class="playlist-row">
+            <app-library-playlists-details [playlist]="playlist" />
+        </li>
+    } @empty {
+        <li class="playlist-empty">No playlists.</li>
+    }
+
+    @if (playlists().length > 0) {
+    <li class="playlist-summary">
+        Total playlists: {{playlists().length}}
+    </li>
+    }
+</ul>
+
+<div class="add-playlist">
+  <input
+    type="text"
+    placeholder="Playlist name"
+    [value]="newPlaylist().playlistName"
+    (input)="onNameInput($event)"
+  />
+  <button type="button" (click)="addPlaylist()">Add Playlist</button>
+</div>
