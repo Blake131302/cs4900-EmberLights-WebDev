@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SiteBanner } from './shared/components/site-banner/site-banner';
 import { NavBar } from './shared/components/nav-bar/nav-bar';
@@ -10,5 +10,4 @@ import { NavBar } from './shared/components/nav-bar/nav-bar';
   templateUrl: './app.html',
 })
 export class App {
-  protected readonly title = signal('OffTheCharts');
 }

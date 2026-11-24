@@ -1,0 +1,26 @@
+<app-playlist-song-form
+  #songForm
+  [song]="editingSong()"
+  (saved)="onSongSaved()"
+  (cancelled)="cancelEdit()"
+/>
+
+<h3>Playlist Songs</h3>
+
+@if (loadError()) {
+  <p class="error">Could not load playlist songs.</p>
+}
+
+<div class="song-list">
+  @for (song of displayedSongs(); track song.songID) {
+    <app-song-detail-card
+      [song]="song"
+      [editDisabled]="songForm.isSubmitting()"
+      (edit)="editSong(song)"
+    />
+  } @empty {
+    @if (!loadError()) {
+      <p>No songs available.</p>
+    }
+  }
+</div>

@@ -18,7 +18,7 @@ export class AlbumsService {
    * @returns 
    */
   addAlbum(body: FormGroup): Observable<Album[]> {
-    return this.http.post<Album[]>(`${environment.baseURL}/album`, body);
+    return this.http.post<Album[]>(`${environment.apiURL}/album`, body);
   }
 
   /**
@@ -26,7 +26,7 @@ export class AlbumsService {
    * @returns 
    */
   getAlbums(): Observable<Album[]> {
-    return this.http.get<Album[]>(`${environment.baseURL}/album`);
+    return this.http.get<Album[]>(`${environment.apiURL}/album`);
   }
 
   /**
@@ -35,6 +35,6 @@ export class AlbumsService {
    * @returns 
    */
   updateAlbum(albumID: number, body: FormGroup): Observable<Album[]> {
-    return this.http.put<Album[]>(`${environment.baseURL}/album/${albumID}`, body);
+    return this.http.put<Album[]>(`${environment.apiURL}/album/${albumID}`, body);
   }
 }

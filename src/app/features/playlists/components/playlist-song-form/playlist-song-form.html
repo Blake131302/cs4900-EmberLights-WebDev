@@ -1,0 +1,66 @@
+<h3>{{ song() ? 'Edit Song' : 'Add Song' }}</h3>
+
+<form [formGroup]="songForm" (ngSubmit)="onSubmit()">
+
+  <div class="input-item">
+    <label for="songName">Song Name:</label>
+    <input
+      id="songName"
+      type="text"
+      formControlName="songName"
+      placeholder="Enter song name"
+    />
+  </div>
+
+  <div class="input-item">
+    <label for="genreID">Genre ID:</label>
+    <input
+      id="genreID"
+      type="number"
+      min="1"
+      formControlName="genreID"
+    />
+  </div>
+
+  <div class="input-item">
+    <label for="songDuration">Duration:</label>
+    <input
+      id="songDuration"
+      type="text"
+      formControlName="songDuration"
+      placeholder="00:03:45"
+    />
+  </div>
+
+  <div class="input-item">
+    <label for="albumID">Album ID:</label>
+    <input
+      id="albumID"
+      type="number"
+      min="1"
+      formControlName="albumID"
+    />
+  </div>
+
+  <button
+    type="submit"
+    [disabled]="songForm.invalid || isSubmitting()"
+  >
+    {{ song() ? 'Save Changes' : 'Add Song' }}
+  </button>
+
+  @if (song()) {
+    <button
+      type="button"
+      [disabled]="isSubmitting()"
+      (click)="onCancel()"
+    >
+      Cancel
+    </button>
+  }
+
+  @if (errorMessage()) {
+    <p class="error">{{ errorMessage() }}</p>
+  }
+
+</form>
