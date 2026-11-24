@@ -19,5 +19,8 @@
         <input name="albumID" type="number" formControlName="albumID" placeholder="e.g. 1"/>
     </div>
 
-    <button type="submit" [disabled]="songForm.invalid">Create</button>
+    <button type="submit" [disabled]="songForm.invalid">
+        @if (songToEdit()) { Update Song } @else { Add Song }
+    </button>
+    <button type="button" (click)="onCancel()">Cancel</button>
 </form>

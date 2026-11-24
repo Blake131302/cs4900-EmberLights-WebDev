@@ -13,6 +13,7 @@
     @for (song of songs(); track song.songID) {
         <li class="song-row">
             <app-song-details [song]="song" />
+            <button type="button" (click)="selectSongForEdit(song)">Edit</button>
         </li>
     } @empty {
         <li class="song-empty">No songs available.</li>
@@ -27,4 +28,9 @@
 </ul>
 
 <!-- Song Input Form -->
-<app-song-form (songCreated)="onSongCreated($event)"></app-song-form>
+<app-song-form 
+    [songToEdit]="selectedSong()"
+    (songCreated)="onSongCreated($event)"
+    (songUpdated)="onSongUpdated($event)"
+    (cancelEdit)="selectedSong.set(undefined)"
+/>

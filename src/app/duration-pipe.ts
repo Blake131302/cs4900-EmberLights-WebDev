@@ -18,3 +18,24 @@ export class DurationPipe implements PipeTransform {
     return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
   }
 }
+
+@Pipe({
+  name: 'durationToArray',
+  standalone: true
+})
+export class DurationToArrayPipe implements PipeTransform {
+  transform(value: string | null | undefined): number[] | undefined {
+    if (!value) {
+      return;
+    }
+
+    const parts = value.split(':').map(part => Number(part));
+
+    if (parts.length < 3 || parts.some(isNaN)) {
+      return;
+    }
+
+    return parts.slice(0, 3);
+  }
+}
+

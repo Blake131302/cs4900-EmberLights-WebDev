@@ -20,6 +20,8 @@ export class SongList {
   //Use a writable signal so I don't have to refetch everything every update
   songs = signal<SongDto[]>([]);
 
+  readonly selectedSong = signal<SongDto | undefined>(undefined);
+
   constructor() {
     this.fetchSongs();
   }
@@ -38,5 +40,16 @@ export class SongList {
 
   onSongCreated(newSong: SongDto): void {
     this.songs.update(currentSongs => [...currentSongs, newSong]);
+  }
+
+  selectSongForEdit(song: SongDto): void {
+    this.selectedSong.set(song);
+  }
+
+  onSongUpdated(updatedSong: SongDto): void {
+    this.songs.update(current =>
+      current.map(song => (song.songID === updatedSong.songID ? updatedSong : song))
+    );
+    this.selectedSong.set(undefined)
   }
 }
