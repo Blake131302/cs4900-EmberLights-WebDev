@@ -15,6 +15,7 @@ describe('NavBar', () => {
     await fixture.whenStable();
   });
 
+  // Fails because there is no provider for the router, which the component uses
   it('should create', () => {
     expect(component).toBeTruthy();
   });

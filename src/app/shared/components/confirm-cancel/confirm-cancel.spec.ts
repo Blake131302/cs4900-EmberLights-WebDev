@@ -15,6 +15,7 @@ describe('ConfirmCancel', () => {
     await fixture.whenStable();
   });
 
+  // Fails because the dialogRef and data inputs are required and not provided in the test  
   it('should create', () => {
     expect(component).toBeTruthy();
   });
