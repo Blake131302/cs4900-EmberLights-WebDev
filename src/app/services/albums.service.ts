@@ -28,4 +28,13 @@ export class AlbumsService {
   getAlbums(): Observable<Album[]> {
     return this.http.get<Album[]>(`${environment.baseURL}/album`);
   }
+
+  /**
+   * Updates albums albumID and artistName based on ID given
+   * @param body 
+   * @returns 
+   */
+  updateAlbum(albumID: number, body: FormGroup): Observable<Album[]> {
+    return this.http.put<Album[]>(`${environment.baseURL}/album/${albumID}`, body);
+  }
 }
