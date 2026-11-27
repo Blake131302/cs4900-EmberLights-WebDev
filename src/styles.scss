@@ -1,5 +1,23 @@
 $background-color: #1E1E1E;
 
+h1 {
+    font-family: "Archivo Black", sans-serif;
+    size: 40px;
+}
+
+h2 {
+    font-family: "Archivo", sans-serif;
+    font-weight: bold;
+    size: 32px;
+}
+
+h3, h4, h5 {
+    font-family: "Montserrat", sans-serif;
+}
+
+p {
+    font-family: "Montserrat", sans-serif;
+}
 html {
   background-color: $background-color;
   margin: 0;
